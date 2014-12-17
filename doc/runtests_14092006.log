@@ -1,0 +1,114 @@
+
+Performing eSPec test #1
+
+real	1m7.102s
+user	1m6.607s
+sys	0m0.079s
+
+   Test #1 finished without any erros!
+
+Performing eSPec test #2
+
+real	2m1.380s
+user	2m0.625s
+sys	0m0.103s
+
+   Test #2 finished without any erros!
+
+Performing eSPec test #3
+
+real	7m38.979s
+user	7m38.545s
+sys	0m0.282s
+
+   Test #3 finished without any erros!
+
+Performing eSPec test #4
+
+real	2m16.189s
+user	2m15.778s
+sys	0m0.215s
+
+   Test #4 finished without any erros!
+
+Performing eSPec test #5
+
+real	6m17.447s
+user	6m16.368s
+sys	0m0.238s
+
+   Test #5 finished without any erros!
+
+Performing eSPec test #6
+
+real	16m3.296s
+user	13m38.115s
+sys	0m0.486s
+
+   Test #6 finished without any erros!
+
+Performing eSPec test #7
+
+real	3m29.382s
+user	3m28.981s
+sys	0m0.145s
+
+   Test #7 finished without any erros!
+
+Performing eSPec test #8
+
+real	0m0.531s
+user	0m0.211s
+sys	0m0.011s
+
+   Test #8 finished without any erros!
+
+Performing eSPec test #9
+
+real	0m40.150s
+user	0m20.859s
+sys	0m0.015s
+
+   Test #9 finished without any erros!
+
+Performing eSPec test #10
+
+real	6m8.300s
+user	3m4.069s
+sys	0m0.033s
+
+   Test #10 finished without any erros!
+
+Performing eSPec test #11
+
+real	0m42.115s
+user	0m21.039s
+sys	0m0.013s
+
+   Test #11 finished without any erros!
+
+Performing eSPec test #12
+
+real	14m3.561s
+user	11m6.647s
+sys	0m0.074s
+
+   Test #12 finished without any erros!
+
+Performing eSPec test #13
+
+real	6m9.918s
+user	4m46.887s
+sys	0m0.404s
+
+   Test #13 finished without any erros!
+
+Performing eSPec test #14
+
+real	2m30.226s
+user	2m23.650s
+sys	0m0.033s
+
+   Test #14 finished without any erros!
+
+eSPec tests finished!

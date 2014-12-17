@@ -1,0 +1,306 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[brazil]{babel}
+\usepackage{amsbsy,amssymb,amsmath}
+\usepackage{graphicx,float,url,graphics}
+\usepackage[latin1]{inputenc}
+\usepackage{indentfirst,geometry}
+\topmargin -1.5cm
+\textheight 247mm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\date{\today}
+\title{\textsc{e\textit{SP}ec} MANUAL PROGRAM}
+\author{Freddy Fernandes Guimarães \\
+        Amary Cesar Ferreira \\
+	Viviane Costa Felicissimo}
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+The \textsc{e\textit{SP}ec} program was developed to solve the nuclear problembased on time dependent perturbation theory. The main features implemented in the program intend to construct the eletron-vibrational spectra. The spectrum can be build both for: (a) time dependent formalism doing the propagation of the wave function in the time domain; or (b) time independet formalisms solving the relevants eigenstates in the energy space. 
+
+In the next section is given the theory, in the subsequent ones are shown how to compile and use the program, as well as, explanations about the numerical used and exemplary applications. Finally it is given a general conclusion about the methods related with the solution of radiation/matter interaction.   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Theory}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{'espec' Program version 0.0}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsetion{Starting}
+You can get the program as a tar.gz archive called \texttt{espec_ver.tar.gz}, where \texttt{ver} need be change by corrent program version. The first step is uncompress the tar.gz file, this can be made using the line command:
+\begin{verbatim}
+machinename:/ > gzip -dc espec_ver.tar.gz | tar xvf -
+\begin{verbatim} 
+
+To compiling the program change the path to the correct program adrress:
+\begin{verbatim}
+machinename:/ > cd espec_ver
+\begin{verbatim}
+Before really start compile the program, it is necessary uncomment some lines, which are related with the kind of machine that you have. In the beginning of file called \texttt{makefile} look for the name of your machine and uncomment the obove lines. After that the compilation is made by usual \texttt{make} command, so type: 
+\begin{verbatim}
+machinename:/ > make
+\begin{verbatim}
+this command will generate a executable file called \texttt{espec_ver.x} and a link \texttt{espec.x} that can be used instead of \texttt{espec_ver.x}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsetion{Making the input file} \label{sec:inputfile} 
+The espec program uses a input file with the main parameters. This parameters give to espec the informations needed to calculate the spectrum and the features to be used. The input file have an hierarc of groups, subgroups, choice and parameters. The description about these groups, subgroups, choice and parameters can be found above in section~\ref{sec:groups}. An example input file is shown in Fig.~\ref{fig:inputfile}. 
+
+In the first line of Fig.~\ref{fig:inputfile} can be seen a initial title of the input file (\texttt{*** eSPec input file ***}), this title is unchangeable and it is needed as the first line in the input file (without this line the program won't recognize the input file). The second line contain the name of the group called \textsl{MAIN}. The groups always are started by \texttt{**} characters. The subgroups are initiated by \texttt{*} character as can be seen at the third line, at the next line there is a choice that are started by a dot (\texttt{.}). Generally following the choice there are some parameters that in general are numbers. The parameteres need to be ended by slash (\texttt{/}) symbol. It is possible create two or more iqual groups or subgroups but if any parameter is change into this new group or subgroup only the last one will be accept.
+\begin{figure}
+\centering
+\begin{verbatim}
+*** eSPec input file ***
+
+**MAIN
+*DIMENSION
+.1D
+256/ 
+
+*POTENTIAL
+.OHS
+1.20752 1580.19/ 
+1.11640 1904.77/ 
+
+*MASS
+6.8D0/
+
+**TI
+*TPDIAG
+.LANCZS
+*NIST
+1 1
+
+**END
+
+\end{verbatim}
+\caption{Example of input file. It is permitted have blank lines between groups and subgroups but it is not possible have it into the subgroup.}
+\label{fig:inputfile}
+\end{figure}
+
+Never forget espec program is case sensitive, all the groups subgroups and choices are in capital case, so do not use \textsl{main} instead of \textsl{MAIN}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setion{Groups, subgroup, choice and parameters descriptions} \label{sec:groups}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{**MAIN}} 
+This is the most important and always necessary group in the input of espec program. It contains the main informations about the system in study and features to be used during the calculation.  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\subsubsection{\textsl{*TITLE} (optional)}
+This subgroup can be added to give a title for the calculation, the syntax is the command \textsl{*TITLE} followed by any sentence desired.
+\begin{verbatim}
+*TITLE
+Any sentense you want
+\begin{verbatim}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\subsubsection{\textsl{*SEED} (optional)}
+This subgroup is used, into the \textsl{**MAIN} group, for change the initial seed. This number is used for generate the first initial vector in the lanczos method. The syntax is the command \textsl{*SEED} followed by an integer number, \textit{e.g.};
+\begin{verbatim}
+*SEED
+10
+\begin{verbatim}
+the default value of seed varible is set 1.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\subsubsection{\textsl{*DIMESION}}
+This subgroup is also placed into the \textsl{**MAIN} group and contains a choice between:
+\begin{itemsize}
+\item \textsl{.1D} one dimensional calculation; 
+\item \textsl{.2D} two dimensional calculation; 
+\item \textsl{.3D} three dimensional calculation.
+\end{itemsize} 
+After the dimension choice is given the number of the points in the data grid, \textit{e.g.}:
+\begin{verbatim}
+*DIMESION
+.3D
+256 56 128/
+\begin{verbatim}
+In the above example was specified a three dimesional calculation with a grip data of 256 points at the first coordinate 56 points at the second coordinate and finaly 128 points at the last coordinate.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\subsubsection{\textsl{*TPCALC}}
+The \textsl{*TPCLC} \textsl{MAIN} subgroup is followed by two choices. The first one specify weather the calculation will be performated by:
+\begin{itemsize}
+\item \textsl{.ENERGY} This choice is used to calculate only the eigen-energies of a given potential solving the time-independent non relativistic schrodinger equation; 
+\textbf{Example:}
+\begin{verbatim}
+*TPCALC
+.ENERGY
+\begin{verbatim}
+\item \textsl{.CORREL} This choice perform the calculation of the auto-correlation function propagating the initial wave function in a potetial surface. The initial wave-function is calculated solving the time independent non relativistic schrodinger equation;
+\textbf{Example:}
+\begin{verbatim}
+*TPCALC
+.CORREL
+\begin{verbatim}
+\item \textsl{.SPECTRUM} This choice perform a spectrum calculation. This choice need be followed by another choice because the spectrum can be calculated either by time-dependente or by time-independent approach;
+   \begin{itemsize}
+   \item \textsl{.TI} This choice will perform the spectrum calculation by time-independent approach;
+   \textbf{Example:}
+   \begin{verbatim}
+   *TPCALC
+   .SPECTRUM
+   .TI
+   \begin{verbatim}
+   \item \textsl{.TD} This choice will perform the spectrum calculation by time-dependent approach doing the fourier transform of the auto-correlation function (C(t)).
+   \textbf{Example:}
+   \begin{verbatim}
+   *TPCALC
+   .SPECTRUM
+   .TD
+   \begin{verbatim}
+   \end{itemsize}
+\end{itemsize} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\subsubsection{\textsl{*POTENTIAL}}
+In the espec program is possible use some empirical potetials that are already implemented in the source code, as well as it can be used a file with the potetential surface. 
+
+It to be used a potetial in a file in the first rows are given the grid of the dimensions and in the last row is placed the energy related with the grid point (Fig.~\ref{fig:grid}).
+\begin{figure}
+\centering
+\begin{verbatim}
+** initial potential **
+0.0    0.0    10.4	
+0.0    1.0     9.5
+0.0    2.0    10.4
+1.0    0.0    10.0
+1.0    1.0     5.0
+1.0    2.0    10.0
+2.0    0.0    10.4
+2.0    1.0     9.5
+2.0    2.0    10.4
+3.0    0.0    11.4
+3.0    1.0    10.9
+3.0    2.0    11.4
+** final potential **
+0.0    0.0    10.4	
+0.0    1.0     9.5
+0.0    2.0    10.4
+1.0    0.0    10.4
+1.0    1.0     9.5
+1.0    2.0    10.4
+2.0    0.0    10.0
+2.0    1.0     5.0
+2.0    2.0    10.0
+3.0    0.0    11.4
+3.0    1.0    10.9
+3.0    2.0    11.4
+\end{verbatim}
+\label{fig:grid}
+\caption{Example of the file containing the potential grid data. On the above example is showed that in the first line of the potetial file, it is given a title (** initial potential **), the discretization is 4$\times$3, so there is 12 points for it potential. Before the end of the data of the initial potential is given another title (** final potential **) and after that the grid data points (the grid is always the same grid of the initial potential)}
+\end{figure}
+
+The potential in a file is called by the command \textsl{.FILE} follwed by the name of the file that have the potential grid data, \textit{e.g.}:
+\begin{verbatim}
+*POTENTIAL
+.FILE
+<name_potetial_file>
+\begin{verbatim}
+
+The empirical potential codified in espec program are called by the potential name folowed by the parameters of the initial and final potential and at least but not last, the initial and final possitions respectively. Some potential choice are:
+\begin{itemsize}
+\item \textbf{1-Dimension empirical potetials}
+   \begin{itemsize}
+   \item \textsl{.OHS} This choice make the grid data points of the simple harmonic oscilator Eq.~\ref{eq:ohs1};
+\begin{equation} \label{eq:ohs1}
+V(r) = frac{1}{2} k_{f} (r - r_{e}) 	
+\end{equation}
+where $k_{f}$ is the force constant a $r_{e}$ is the equilibrium distance. Actualy in the input file the parameters need by this potential are the $r_{e}$ (\emph{in \AA units}) and the $\omega_{e}$ (\emph{in cm$^{1}$ units}) that it is supossed to be easier found in the literature, \textit{e.g.};
+\begin{verbatim}
+*POTENTIAL
+.OHS
+1.20752 1580.19/
+1.11640 1904.77/
+0.0 2.5/ 
+\end{verbatim}
+The first parameter in the above example is the equilibrium distance and the second is $\omega_{e}$ all for the initial potential. In the next line the sequence is the same but for the final potential. The last line give the initial and final (0.0) point of the grid (2.5). 
+
+The relation between $\omega_{e}$ and $k_{f}$ is given by~\cite{ref:}:
+\begin{equation} \label{eq:omegak}
+\omega_{e} = \frac{1}{2\pi c}\sqrt{\frac{k_{f}}{\mi}}
+\end{equation}
+$\mi$ is the sistem reducted mass.  
+
+   \item \textsl{.MORSE-O}This choice make the grid data points using morse potential~\cite{ref:} Eq.~\ref{eq:morse};
+\begin{equation} \label{eq:ohs1}
+V(r) = D_{e} [\left 1 - e^{\alpha(\left r - r_{e}} \right) \rigth]^{\frac{1}{2}}
+\end{equation}
+where $D_{e}$ is the disociation energy, $r_{e}$ is the equilibrium distance and $\alpha$ give the hardness of the potential. In the input file of \textsl{MORSE-D} the parameters need by this potential are the $r_{e}$ (\emph{in \AA units}), $\omega_{e}$ and $\omega_{e}x_{e}$ (\emph{both in cm$^{-1}$ units) \textit{e.g.};
+\begin{verbatim}
+*POTENTIAL
+.MORSE-O
+1.20752 1580.19 11.98/
+1.11640 1904.77 16.26/
+0.0 2.5/ 
+\end{verbatim}
+The first parameter in the above example is the equilibrium distance, the second and the third parameters in the same line are resectively  $\omega_{e}$ and $\omega_{e}x_{e}$ all for the initial potential. In the next line the sequence is the same for the final potetial. The last line give the initial and final (0.0) point of the grid (2.5). 
+
+The relation respectively between $\omega_{e}$, $\omega_{e}x_{e}$ and $D_{e}$ and $\alpha$ are~\cite{ref:}: 
+\begin{equation}
+D_{e} = \frac{hc\omega_{e}}{4 \omega_{e}x_{e}} - \frac{1}{4} \omega_{e}x_{e} h c \simeq \frac{hc\omega_{e}}{4 \omega_{e}x_{e}}
+\end{equation}
+\begin{equation}
+D_{e} \alpha^{2} = \frac{1}{2} k_{f}
+\end{equation}
+
+%   \item \textsl{.MORSE-D} The same of the \textsl{MORSE-D}, but the parameters needed are $D_{e}$ , $r_{e}$ and $\alpha$;
+%   \item \textsl{.DOHS};
+%   \item \textsl{.DMORSE}.
+   \end{itemsize}
+\item \textbf{2-Dimension empirical potetials}
+   \begin{itemsize}
+%%%%%%%%%%%%parei aqui@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+   \item \textsl{.OHS} This choice make the grid data points of the double simple harmonic oscilator Eq.~\ref{eq:ohs1};
+\begin{equation} \label{eq:ohs1}
+V(r_{1}, r_{2}) = \frac{1}{2} k_{f1} (r_{1} - r_{e1}) + \frac{1}{2} k_{f2} (r_{2} - r_{e2})
+\end{equation}
+where $k_{f1}$ and is the force constant a $r_{e}$ is the equilibrium distance. Actualy in the input file the parameters need by this potential are the $r_{e}$ (\emph{in \AA units}) and the $\omega_{e}$ (\emph{in cm$^{1}$ units}) that it is supossed to be easier found in the literature, \textit{e.g.};
+\begin{verbatim}
+*POTENTIAL
+.OHS
+1.20752 1580.19/
+1.11640 1904.77/
+0.0 2.5/ 
+\end{verbatim}
+The first parameter in the above example is the equilibrium distance and the second is $\omega_{e}$ all for the initial potential. In the next line the sequence is the same but for the final potential. The last line give the initial and final (0.0) point of the grid (2.5). 
+
+The relation between $\omega_{e}$ and $k_{f}$ is given by~\cite{ref:}:
+\begin{equation} \label{eq:omegak}
+\omega_{e} = \frac{1}{2\pi c}\sqrt{\frac{k_{f}}{\mi}}
+\end{equation}
+$\mi$ is the sistem reducted mass.  
+; 
+
+%   \item \textsl{.MORSE};
+   \item \textsl{.LS};
+   \item \textsl{.LSM}.
+   \end{itemsize}
+\item \textbf{3-Dimension empirical potetials}
+   \begin{itemsize}
+   \item \textsl{.OHS};
+   \end{itemsize}
+\end{itemsize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

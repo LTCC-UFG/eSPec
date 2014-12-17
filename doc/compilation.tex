@@ -1,0 +1,16 @@
+\chapter{Compilation}
+
+You can get the program as a tar.gz archive called \texttt{espec\_ver.tar.gz}, where \texttt{ver} need be change by corrent program version. The first step is uncompress the tar.gz file. This can be made using the line command:
+\begin{verbatim}
+machinename:/ > gzip -dc espec_ver.tar.gz | tar xvf -
+\end{verbatim} 
+
+To compiling the program it is necessary to change the path to the correct program adrress:
+\begin{verbatim}
+machinename:/ > cd espec_ver
+\end{verbatim}
+Before really start compile the program, it is necessary uncomment some lines, which are related with the kind of machine that you have. In the beginning of the file called \texttt{makefile} look for the name of your machine and uncomment the above lines. After that, the compilation is made by usual \texttt{make} command. So, type: 
+\begin{verbatim}
+machinename:/ > make
+\end{verbatim}
+This command will generate a executable file called \texttt{espec\_ver.x} and a link \texttt{espec.x} that can be used instead of \texttt{espec\_ver.x}.

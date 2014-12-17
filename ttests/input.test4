@@ -1,0 +1,45 @@
+*** eSPec input file ***
+========================
+**MAIN
+*TITLE
+ +++++ eSPec input file test 4 +++++
+*DIMENSION
+.1D
+ 201/
+*POTENTIAL
+.FILE
+eigpot_test3.inp
+*MASS
+ 7.49D0/
+*TPCALC
+.SPECTRUM
+.TD
+*INIEIGVC
+.GETR
+*CHANGE
+.YES
+*PRTCRL
+.PARTIAL
+
+**TD
+*PROPAG
+.PSIL
+ 0.0  250.0  2D-3  10/
+*PRPGSTATE
+ 0/
+*TPTRANS
+.ONE
+*PRPTOL
+ 3D0/
+
+**SPECTRUM
+*FOURIER
+ 12/
+*HWHM
+ 0.087  0.0  0.12  19.562/
+**END
+
+
+
+
+

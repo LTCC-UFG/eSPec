@@ -1,0 +1,32 @@
+*** eSPec input file ***
+========================
+**MAIN
+*TITLE
+ +++++ Compute the LEPS potential +++++
+*DIMENSION
+.2D
+200  180/
+*INITIAL_POTENTIAL
+.LEPS_CC_Dalpha_au
+1.402  1.027  0.17443    1.402  1.027  0.17443    1.402  1.027  0.17443     0.30  0.05  0.05    180/
+*GRID_RANGES_au
+0.5  8.2    0.4  7.56/
+*MASSES
+1.0D0  1.0D0  1.0D0/
+*MASS_FACTORS
+0.6666  0.6666/
+*TPCALC
+.PES
+*INIEIGVC
+.CALC
+*PRTPOT
+.ON
+*CHANGE
+.YES
+
+**END
+
+
+
+
+

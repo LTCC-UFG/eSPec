@@ -1,0 +1,706 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{amsbsy,amssymb,amsmath}
+\usepackage{graphicx,float,url,graphics}
+%\usepackage[latin1]{inputenc}
+\usepackage{indentfirst,geometry}
+\topmargin -1.5cm
+\textheight 247mm
+\def\espec{\textsc{e\textit{SP}ec}}
+%\def\espec{e\textit{SP}ec}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\date{\today}
+\title{\espec MANUAL PROGRAM}
+\author{Freddy Fernandes Guimarães,
+	Viviane Costa Felicissimo, \\
+        Amary Cesar Ferreira and
+        Faris Gel'mukhanov}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+The \espec program was developed to solve numerically the time dependent and time independent schr\"odinger equation.
+ 
+The goal of the program in to compute the vibrational resolved spectrum of molecules.
+
+nuclear problem based on time dependent perturbation theory. 
+
+The main feature implemented in this program intends to construct eletron-vibrational spectra of molecules. 
+
+The spectrum can be built by: (a) the time dependent formalism which does the propagation of the wave function in the time domain; or (b) the time independet formalism which solves the relevant eigenstates in the energy space. 
+
+In the next section is presented the theory, and in the subsequent ones are shown how to compile and use the program, as well as, explanations about the numerical methods used and exemples of applications. Finally it is given a general conclusion about the methods related with the solution of radiation/matter interaction.   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Theory}
+
+Here are presented briefly the final equations and numerical methodologies implemented in the \espec program. 
+
+%More detailed information about the derivation of the expressions and the numerical methodologies can be obtained in the references
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Stationary eigenvalues and eigenstates}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Propagation of the wave packets}
+
+\subsubsection{SOD}
+
+\subsubsection{SIL}
+
+
+
+\subsubsection{SPO}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The vibrational resolved spectrum}
+
+\subsubsection{Time independet perturbation theory}
+
+\subsubsection{First order time dependent perturbation theory}
+
+\subsubsection{Second order time dependent perturbation theory}
+
+\subsubsection{Pump-probe theory}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Starting: softwear and compilation}
+
+The program can be obtained by ftp as a tar.gz archive from the internet site: . In this site download the file called \texttt{espec\_ver.tar.gz}, where \texttt{ver} need be change by corrent program version. 
+
+The first step is uncompress the tar.gz file. This can be made using the line command:
+\begin{verbatim}
+machinename:/ > gzip -dc espec_ver.tar.gz | tar xvf -
+\end{verbatim} 
+
+To compiling the program it is necessary to change the path to the correct program address:
+\begin{verbatim}
+machinename:/ > cd espec_ver
+\end{verbatim}
+Before really start compile the program, it is necessary uncomment some lines, which are related with the kind of machine that you have. In the beginning of the file called \texttt{makefile} look for the name of your machine and uncomment the above lines. After that, the compilation is made by usual \texttt{make} command. So, type: 
+\begin{verbatim}
+machinename:/ > make
+\end{verbatim}
+This command will generate a executable file called \texttt{espec\_ver.x} and a link \texttt{espec.x} that can be used instead of \texttt{espec\_ver.x}.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Making the input file} \label{sec:inputfile} 
+The \espec program uses an input file with the main parameters. These parameters give to \espec the necessary informations to calculate the spectrum and the features to be used. The input file has an hierarchy of groups, subgroups, choice and parameters. The description about these groups, subgroups, choice and parameters can be found belong in section~\ref{sec:groups}. An example input file is shown in Fig.~\ref{fig:inputfile}. 
+
+In the first line of Fig.~\ref{fig:inputfile} can be seen a initial title of the input file (\texttt{*** eSPec input file ***}), this title is unchangeable and it is needed as the first line in the input file. Without this line the program won't recognize the input file. The second line contain the name of the group called \textsl{MAIN}. The groups always are started by \texttt{**} characters. The subgroups are initiated by \texttt{*} character as can be seen at the third line. At the next line there is a choice that are started by a dot (\texttt{.}). Generally following the choice there are some parameters that, in general, are numbers. The parameteres need to be ended by slash (\texttt{/}) symbol. It is possible to create two or more equal groups or subgroups, but if any parameter is change into this new group or subgroup, only the last one will be accept.
+
+
+\begin{figure}
+\centering
+\begin{tabular}{c}
+\hline \\
+\begin{minipage}[c]{0.5\textwidth}
+\begin{verbatim}
+*** eSPec input file ***
+
+**MAIN
+*DIMENSION
+.1D
+256/ 
+
+*POTENTIAL
+.OHS
+1.20752 1580.19/ 
+1.11640 1904.77/ 
+
+*MASS
+6.8D0/
+
+**TI
+*TPDIAG
+.LANCZS
+*NIST
+1 1
+
+**END
+\end{verbatim}
+\end{minipage} \\\\
+\hline
+\begin{minipage}[c]{0.5\textwidth}
+\caption{\label{fig:inputfile}
+Example of an input file. It is permitted to have blank lines between groups and subgroups, but it is not possible to have it into the subgroup.
+}
+\end{minipage} 
+
+\end{tabular}
+\end{figure}
+
+Never forget that \espec program is case sensitive. All the groups, subgroups and choices must be given in capital case. So, do not use \textsl{main} instead of \textsl{MAIN}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Groups, subgroups, choices and parameters} \label{sec:groups}
+
+
+
+
+
+
+
+\begin{table}[!htp]
+\centering
+\begin{tabular}{||l|l|l|l||}
+\hline\hline%\hline
+\textsl{**MAIN} & \textsl{**TI} & \textsl{**TD} & \textsl{**SPECTRUM} \\
+\hline
+\textsl{*TITLE} & \textsl{*TPDIAG} & \textsl{*PROPAG} & \textsl{*FOURIER}\\
+\textsl{*TPCALC} & \textsl{*NIST} & \textsl{*PRPGSTATE} & \textsl{*WINDOWING} \\
+\textsl{*DIMENSION} & \textsl{*NFST} & \textsl{*PULSE\_AND\_DIPOLE} & \\
+\textsl{*TPTRANS} & \textsl{*ABSTOL} & \textsl{*ABSORBING} & \\
+\textsl{*POTENTIAL} & \textsl{*SEED} & \textsl{*TPTRANS} & \\
+\textsl{*INITEIGVC} & & \textsl{*PRPTOL} & \\
+\textsl{*MASS} & & \textsl{*NSHOT} & \\
+\textsl{*SEED} & & \textsl{*NPROJECTIONS} & \\
+\textsl{*NSHOT} & & \textsl{*FOURIER} & \\
+\textsl{*PRTEIGVC} & & & \\
+\textsl{*PRTEIGVC2} & & & \\
+\textsl{*PRTPOT} & & & \\
+\textsl{*PRTVEFF} & & & \\
+\textsl{*PRTPULSE} & & & \\
+\textsl{*PRTDIPOLE} & & & \\
+\textsl{*PRTCRL} & & & \\
+\hline\hline%\hline
+\end{tabular}
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\textsl{**MAIN} group and its subgroups} 
+This is the most important and always necessary group in the input of \espec program. It contains the main informations about the system in study and features to be used during the calculation.  
+
+List of subgroups recognized inside the \textsl{**MAIN} group:
+\textsl{*TITLE} (optional) \\
+\textsl{*TPCALC} (obligatory) \\
+\textsl{*DIMENSION} (obligatory) \\
+\textsl{*TPTRANS} \\
+\textsl{*POTENTIAL} (obligatory) \\
+\textsl{*INITEIGVC} \\
+\textsl{*MASS} (obligatory) \\
+\textsl{*SEED} (optional) \\
+\textsl{*NSHOT} (optional) \\
+\textsl{*PRTEIGVC} (optional) \\
+\textsl{*PRTEIGVC2}(optional) \\
+\textsl{*PRTPOT} (optional) \\
+\textsl{*PRTVEFF} (optional) \\
+\textsl{*PRTPULSE} (optional) \\
+\textsl{*PRTDIPOLE} (optional) \\
+\textsl{*PRTCRL} (recommended) \\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*TITLE} (optional)}
+This subgroup can be added to give a title for the calculation, the syntax is the command \textsl{*TITLE} followed by any sentence desired.\\\\
+\textbf{Example:}
+\begin{verbatim}
+*TITLE
+<Any sentense that you want.>
+\end{verbatim}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*TPCALC}}
+The \textsl{*TPCLC} \textsl{MAIN} subgroup is followed by two choices. The first one specify weather the calculation will be performated by:
+
+
+\begin{itemize}
+%%%%%%%%%%%%%%%%%%%%%%
+\item \textsl{.ENERGY} This choice is used to calculate only the eigen-energies of a given potential solving the time-independent non relativistic Schr\"{o}dinger equation. \\\\
+\textbf{Example:}
+\begin{verbatim}
+*TPCALC
+.ENERGY
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item \textsl{.PROPAGATION} This choice performs the propagation of the wave packet on a potential surface. The wave packet is obtained from the initial wave function which is calculated solving the time-independent non relativistic Schr\"{o}dinger equation. Using this choice, firstly the eigen-energies and stationary eigen-functions from the initial state are calculated, and after that the calculation of the propagation is performed. \\\\
+\textbf{Example:}
+\begin{verbatim}
+*TPCALC
+.PROPAGATION
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item \textsl{.CORRELATION} This choice performs the calculation of the auto-correlation function propagating the initial wave function in a given potetial surface. The initial wave-function is calculated solving the time independent non relativistic Schr\"{o}dinger equation. Using this choice, firstly the eigen-energies and stationary eigen-functions from the initial state are calculated. After that the calculation of the propagation is performed, and finally the auto-correlation function is calculated.\\\\
+\textbf{Example:}
+\begin{verbatim}
+*TPCALC
+.CORRELATION
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item \textsl{.SPECTRUM} This choice performs a spectrum calculation. This choice needs to be followed by another choice because the spectrum can be calculated either using time-dependente or time-independent approaximation; 
+   \begin{itemize}
+   \item \textsl{.TI} This choice will perform the spectrum calculation by time-independent approach.\\\\
+   \textbf{Example:}
+   \begin{verbatim}
+   *TPCALC
+   .SPECTRUM
+   .TI
+   \end{verbatim}
+
+   \item \textsl{.TD} This choice will perform the spectrum calculation by time-dependent approach doing the fourier transform of the auto-correlation function (C(t)). Using this choice, firstly the eigen-energies and stationary eigen-functions from the initial state are calculated. After that the calculation of the propagation is performed, the auto-correlation function is calculated, and finally the spectrum is computed.\\\\
+   \textbf{Example:}
+   \begin{verbatim}
+   *TPCALC
+   .SPECTRUM
+   .TD
+   \end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item \textsl{.ONLYSPEC} This choice performs directly the spectrum calculation by time-dependent approximation. Using this choice, it is necessary to give the auto-correlation function.\\\\
+\textbf{Example:}
+\begin{verbatim}
+*TPCALC
+.ONLYSPEC
+\end{verbatim}
+   \end{itemize}
+\end{itemize} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*DIMESION}}
+This subgroup is also placed into the \textsl{**MAIN} group and contains a choice between:
+\begin{itemize}
+\item \textsl{.1D} one dimensional calculation; 
+\item \textsl{.2D} two dimensional calculation; 
+\item \textsl{.2DC} two dimensional calculation with cross term;
+\item \textsl{.3D} three dimensional calculation.
+\end{itemize} 
+After the dimension choice is given the number of the points in the data grid, \textit{e.g.}:
+\begin{verbatim}
+*DIMESION
+.3D
+256 56 128/
+\end{verbatim}
+In the above example was specified a three dimesional calculation with a grip data of 256 points at the first coordinate 56 points at the second coordinate and finaly 128 points at the last coordinate.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*TPTRANS}}
+Type of transition operator.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*POTENTIAL}}
+%The potential energy surfaces can be generated using the empirical potentials implemented in the program or a set of points given in a external file ().
+In the espec program is possible use some empirical potetials that are already implemented in the source code, as well as it can be used a file with the potetential surface. 
+
+It to be used a potetial in a file in the first rows are given the grid of the dimensions and in the last row is placed the energy related with the grid point (Fig.~\ref{fig:grid}).
+\begin{figure}
+\centering
+\begin{tabular}{c}
+\hline \\
+\begin{minipage}[c]{0.5\textwidth}
+\begin{verbatim}
+** initial potential **
+0.0    0.0    10.4	
+0.0    1.0     9.5
+0.0    2.0    10.4
+1.0    0.0    10.0
+1.0    1.0     5.0
+1.0    2.0    10.0
+2.0    0.0    10.4
+2.0    1.0     9.5
+2.0    2.0    10.4
+3.0    0.0    11.4
+3.0    1.0    10.9
+3.0    2.0    11.4
+** final potential **
+0.0    0.0    10.4	
+0.0    1.0     9.5
+0.0    2.0    10.4
+1.0    0.0    10.4
+1.0    1.0     9.5
+1.0    2.0    10.4
+2.0    0.0    10.0
+2.0    1.0     5.0
+2.0    2.0    10.0
+3.0    0.0    11.4
+3.0    1.0    10.9
+3.0    2.0    11.4
+\end{verbatim}
+\end{minipage}\\\\
+\hline
+\begin{minipage}[c]{0.5\textwidth}
+\caption{\label{fig:inputexample}
+Example of the file containing the potential grid data. On the above example is showed that in the first line of the potetial file, it is given a title (** initial potential **), the discretization is 4$\times$3, so there is 12 points for it potential. Before the end of the data of the initial potential is given another title (** final potential **) and after that the grid data points (the grid is always the same grid of the initial potential)
+}
+\end{minipage}
+\end{tabular}
+\end{figure}
+
+The potential in a file is called by the command \textsl{.FILE} follwed by the name of the file that have the potential grid data, \textit{e.g.}:
+\begin{verbatim}
+*POTENTIAL
+.FILE
+<potetial_file_name>
+\end{verbatim}
+
+The empirical potential codified in espec program are called by the potential name folowed by the parameters of the initial and final potential and at least but not last, the initial and final possitions respectively. Some potential choice are:
+
+
+
+
+
+
+\subsubsection{1-Dimension empirical potetials}
+
+\begin{itemize}%1-dimensional potentials
+%%%%%%%%%%%%%%%%%%%%%%%
+\item \textsl{.OHS}
+This choice make the grid data points of the simple harmonic oscilator Eq.~\ref{eq:ohs1};
+\begin{equation} \label{eq:ohs1}
+V(r) = \frac{1}{2} k_{f} (r - r_{e}) 	
+\end{equation}
+where $k_{f}$ is the force constant a $r_{e}$ is the equilibrium distance. Actualy in the input file the parameters need by this potential are the $r_{e}$ (\emph{in \AA units}) and the $\omega_{e}$ (\emph{in cm$^{1}$ units}) that it is supossed to be easier found in the literature, \textit{e.g.};
+\begin{verbatim}
+*POTENTIAL
+.OHS
+1.20752 1580.19/
+1.11640 1904.77/
+0.0 2.5/ 
+\end{verbatim}
+The first parameter in the above example is the equilibrium distance and the second is $\omega_{e}$ all for the initial potential. In the next line the sequence is the same but for the final potential. The last line give the initial and final (0.0) point of the grid (2.5). 
+
+The relation between $\omega_{e}$ and $k_{f}$ is given by~\cite{ref:}:
+\begin{equation} \label{eq:omegak}
+\omega_{e} = \frac{1}{2\pi c}\sqrt{\frac{k_{f}}{\mu}}
+\end{equation}
+$\mu$ is the sistem reducted mass.  
+
+%%%%%%%%%%%%%%%%%%%%%%%   
+\item \textsl{.MORSE-O} This choice make the grid data points using morse potential~\cite{ref:} Eq.~\ref{eq:morse};
+\begin{equation} \label{eq:ohs1}
+V(r) = D_{e} [ 1 - e^{\alpha( r - r_{e}} )]^{\frac{1}{2}}
+\end{equation}
+
+where $D_{e}$ is the disociation energy, $r_{e}$ is the equilibrium distance and $\alpha$ give the hardness of the potential. In the input file of \textsl{MORSE-D} the parameters need by this potential are the $r_{e}$ (\emph{in \AA units}), $\omega_{e}$ and $\omega_{e}x_{e}$ (\emph{both in cm$^{-1}$ units}) \textit{e.g.};
+\begin{verbatim}
+*POTENTIAL
+.MORSE-O
+1.20752 1580.19 11.98/
+1.11640 1904.77 16.26/
+0.0 2.5/ 
+\end{verbatim}
+The first parameter in the above example is the equilibrium distance in \AA, the second and the third parameters in the same line are resectively  $\omega_{e}$ and $\omega_{e}x_{e}$ all for the initial potential. In the next line the sequence is the same for the final potetial. The last line give the initial and final (0.0) point of the grid (2.5). 
+
+The relation respectively between $\omega_{e}$, $\omega_{e}x_{e}$ and $D_{e}$ and $\alpha$ are~\cite{ref:}: 
+\begin{equation}
+D_{e} = \frac{hc\omega_{e}^2}{4 \omega_{e}x_{e}} - \frac{h c}{4} \omega_{e}x_{e}  \simeq \frac{hc\omega_{e}^2}{4 \omega_{e}x_{e}}
+\end{equation}
+\begin{equation}
+D_{e} \alpha^{2} = \frac{1}{2} k_{f}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%   
+\item \textsl{.MORSE-D} The same of the \textsl{MORSE-D}, but the parameters needed are $D_{e}$ , $r_{e}$ and $\alpha$;
+
+%%%%%%%%%%%%%%%%%%%%%%%   
+\item \textsl{.DOHS};
+
+%%%%%%%%%%%%%%%%%%%%%%%   
+\item \textsl{.DMORSE}.
+
+%%%%%%%%%%%%%%%%%%%%%%%   
+\end{itemize}%1-dimensional potentials
+
+
+
+
+\subsubsection{2-Dimension empirical potetials}
+   
+\begin{itemize}%2-dimensional potentials
+
+%%%%%%%%%%%%%%%%%%%%%%%  
+\item \textsl{.OHS} This choice make the grid data points of the double simple harmonic oscilator Eq.~\ref{eq:ohs1};
+\begin{equation} \label{eq:ohs1}
+V(r_{1}, r_{2}) = \frac{1}{2} k_{f1} (r_{1} - r_{e1}) + \frac{1}{2} k_{f2} (r_{2} - r_{e2})
+\end{equation}
+where $k_{f1}$ and is the force constant a $r_{e}$ is the equilibrium distance. Actualy in the input file the parameters need by this potential are the $r_{e}$ (\emph{in \AA units}) and the $\omega_{e}$ (\emph{in cm$^{1}$ units}) that it is supossed to be easier found in the literature, \textit{e.g.};
+\begin{verbatim}
+*POTENTIAL
+.OHS
+1.20752 1580.19/
+1.11640 1904.77/
+0.0 2.5/ 
+\end{verbatim}
+The first parameter in the above example is the equilibrium distance and the second is $\omega_{e}$ all for the initial potential. In the next line the sequence is the same but for the final potential. The last line give the initial and final (0.0) point of the grid (2.5). 
+
+The relation between $\omega_{e}$ and $k_{f}$ is given by~\cite{ref:}:
+\begin{equation} \label{eq:omegak}
+\omega_{e} = \frac{1}{2\pi c}\sqrt{\frac{k_{f}}{\mu}}
+\end{equation}
+$\mu$ is the sistem reducted mass.  
+; 
+
+%%%%%%%%%%%%%%%%%%%%%%%    
+\item \textsl{.LS};
+   
+%%%%%%%%%%%%%%%%%%%%%%%  
+\item \textsl{.LSM}.
+   
+%%%%%%%%%%%%%%%%%%%%%%%
+\end{itemize}%2-dimesional potentials
+
+
+\subsubsection{3-Dimension empirical potetials}
+   
+\begin{itemize} % 3-dimensional potentials
+   \item \textsl{.OHS};
+   
+\end{itemize}% 3-dimensional potentials
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*INITEIGVC}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*MASS}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*SEED} (optional)}
+This subgroup is used, into the \textsl{**MAIN} group, for change the initial seed. This number is used for generate the first initial vector in the lanczs method. The syntax is the command \textsl{*SEED} followed by an integer number, \textit{e.g.}; 
+\begin{verbatim}
+*SEED
+10
+\end{verbatim}
+the default value of seed varible is set 1.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*NSHOT} (optional)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*PRTEIGVC} (optional)}
+This subgroup enable or disable to print the stationary eigenvector(s) in the output of the \espec program. \\\\
+\textbf{Syntax}:
+\begin{verbatim}
+*PRTEIGVC
+<key>
+\end{verbatim}
+\texttt{key} can be either \texttt{.YES} or \texttt{.NO} by default the print potential is disable. To turn on the print potential the following lines must be added in the input file of the \espec program:
+\begin{verbatim}
+*PRTEIGVC
+.YES
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*PRTEIGVC2} (optional)}
+This subgroup enables to print the wave packet propagation for distinct times in external output files named \texttt{ReIm\_ijlk.dat} and \texttt{eigvc\_ijlk.dat}, where \texttt{i}, \texttt{j}, \texttt{l}, and \texttt{k} are integer numbers that correspond to a time printed inside the file. The files \texttt{ReIm\_ijlk.dat} contain the coordinates in the first column(s) (depending in is a 1D or a 2D or a 3D calculation) in the next two columns appears subsequently the real and imaginary parts of the wave packet. In the \texttt{eigvc\_ijlk.dat} is printed in the first column(s) the the coordinate(s) and in the last the square modulus of the wave packet. \\\\
+\textbf{Syntax}:
+\begin{verbatim}
+*PRTEIGVC
+<key>
+\end{verbatim}
+\texttt{key} can be either \texttt{.YES} or \texttt{.NO} by default the print potential is disable (\texttt{<key>}=\texttt{.NO}). To turn on the print wave packet propagation the following lines must be added in the input file of the \espec program: 
+\begin{verbatim}
+*PRTEIGVC
+.YES
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*PRTPOT} (optional)}
+This option subgroup enable or disable the print of the potential energy surfaces. The potential energy surfaces are printed in the standard output of the \espec program. \\\\
+\textbf{Syntax}:
+\begin{verbatim}
+*PRTPOT
+<key>
+\end{verbatim}
+\texttt{key} can be either\texttt{.YES} or \texttt{.NO}. By default the print potential is disable. To turn on the print potential the following lines must be added in the input file of the \espec program: 
+\begin{verbatim}
+*PRTPOT
+.YES
+\end{verbatim}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*PRTVEFF} (optional)}
+This subgroup enables to print the effective potential surface for distinct times. The time dependent effective potential is printed in external output files named \texttt{veff\_ijlk.dat}, where \texttt{i}, \texttt{j}, \texttt{l}, and \texttt{k} are integer numbers that correspond to a time printed inside the file. The files \texttt{veff\_ijlk.dat} have the coordinates in the first column(s) (depending in is a 1D or a 2D or a 3D calculation) and the effective potential surface in the last column. \\\\
+\textbf{Syntax}:
+\begin{verbatim}
+*PRTVEFF
+<key>
+\end{verbatim}
+\texttt{key} can be either \texttt{.YES} or \texttt{.NO} by default the print potential is disable (\texttt{<key>}=\texttt{.NO}). The following lines must be added in the input file to turn on the print of the wave packet propagation: 
+\begin{verbatim}
+*PRTVEFF
+.YES
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*PRTPULSE} (optional)}
+This subgroup enables to print the time dependence of the electromagnetic pulse in external output file named \texttt{pulse.dat}. The first column of the file \texttt{pulse.dat} have the time and the second column the intensity of the pulse. \\\\
+\textbf{Syntax}:
+\begin{verbatim}
+*PRTPULSE
+<key>
+\end{verbatim}
+\texttt{key} can be either \texttt{.YES} or \texttt{.NO} by default the print potential is disable (\texttt{<key>}=\texttt{.NO}). The following lines must be added in the input file to turn on the print of the time dependence of the pulse:
+\begin{verbatim}
+*PRTPULSE
+.YES
+\end{verbatim}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*PRTDIPOLE} (optional)}
+This subgroup turn on or trun off the printing of the dipole moment function. The spatial dependence of the dipole moment is printed in the standard output of the \espec program. \\\\
+\textbf{Syntax}:
+\begin{verbatim}
+*PRTPOT
+<key>
+\end{verbatim}
+\texttt{key} can be either \texttt{.YES} or \texttt{.NO} by default the print potential is disable. To turn on the print potential the following lines must be added in the input file of the \espec program: 
+\begin{verbatim}
+*PRTPOT
+.YES
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*PRTCRL} (recommended)}
+This subgroup control the print level during the propagation of the wave packet. The results of the wave packet propagation are printed in the standard output of the \espec. \\\\
+\textbf{Syntax}:
+\begin{verbatim}
+*PRTPOT
+<key>
+\end{verbatim}
+\texttt{key} can be \texttt{.YES} or \texttt{.PARTIAL} or \texttt{.NO}. 
+\begin{itemize}
+\item \texttt{.FULL} means full print of the wave packet properties, like average energy, norm, etc, during its propagation. In case of \texttt{.YES} be setted for this variable the wave packet is printed in the output according to the step of the propagation $\Delta t$ step by step. This option is not recomended for stadart calculations, because it can generate huge files with unnecessary information for stadart calculations. 
+
+\texttt{.PARTIAL} means partial print . The wave packet informations will be printed according to the step of the propagation $\Delta t$. This option is not recomended. it can generate huge files with unnecessary information. 
+ 
+\texttt{.NONE}. 
+
+\end{itemize}
+
+
+ by default the print potential is . To turn on the print potential the following lines must be added in the input file of the \espec program: 
+\begin{verbatim}
+*PRTPOT
+.YES
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\textsl{**TI} group and its subgroups}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*TPDIAG}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*NIST}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*NFST}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*ABSTOL} (optional)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*SEED} (optional)}
+The same as described on \textsl{*SEED} in the \textsl{*MAIN} group (see Sec.~\ref{sec:seed}).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\textsl{**TD} group and its subgroups}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*PROPAG}}
+.PSOD
+
+.PPSOD
+
+.PSIL
+
+.PPSIL
+.PSPO
+
+.PPSPO
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*ABSORBING}}
+absorbing bondary conditions 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*PULSE\_AND\_DIPOLE}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*PRPGSTATE}}
+The \textsl{*PRPGSTATE} subgroup is used to determine which eigenstates will be propagated. 
+\textbf{Syntax}:
+\begin{verbatim}
+*PRPGSTATE
+<numberofstates> <eigenstate> 
+\end{verbatim}
+Both \texttt{<eigenstate>} and  \texttt{<numberofstates>} are integer numbers. \texttt{<numberofstates>} is the number of consecutive eigenstates to be propagated and \texttt{<eigenstate>} is the quantum number of the first eigenstate that will be used as initial condition for the wave packet propagation, textit{e.g.};
+\begin{verbatim}
+*PRPGSTATE
+3 0
+\end{verbatim}
+In the above example three consecutive eigenstates will be propagated starting from the ground state $\nu=0$. By default \texttt{<numberofstates>} and \texttt{<numberofstates>} are respectively 1 and 0. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*TPTRANS}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*PRPTOL}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*NSHOT}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*NPROJECTIONS}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*FOURIER}}
+The same as described on \textsl{*FOURIER} in the \textsl{*SPECTRUM} group (see Sec.~\ref{sec:fourier}).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\textsl{**SPECTRUM} group and its subgroups}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*FOURIER}}\label{sec:fourier}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\textsl{*WINDOWING}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Computing the vibrational resolved spectra}
+
+\subsection{Time independent theory}
+
+\subsection{First order time dependent perturbation theory}
+
+\subsection{Second order time dependent perturbation theory}
+
+\subsection{Pump-probe spectroscopy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

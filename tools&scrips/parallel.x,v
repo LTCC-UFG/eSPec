@@ -1,0 +1,68 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2004.03.12.18.47.41;	author freddy;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/bin/tcsh
+#
+# Input parameters
+set NP = $1
+set NR = $2
+set PATH_INDAT = $3
+#
+# Inicilize varibles
+set PATH = `pwd`
+set N = 1
+set NI = 1
+if (null${NP} == null) set NP = 1
+if (null${NR} == null) set NR = 1
+if (null${PATH_INDAT} == null) set PATH_INDAT = Pdata
+set PATH_IN = $PATH/$PATH_INDAT
+#
+# Write parameters in screen
+echo '   Main directory: '${PATH}
+echo '   Total number of jobs:' ${NR}
+echo '   Total number of processors:' ${NP}
+#
+# Calculate neber of jobs per processor
+@@ NJP = $NR / $NP
+echo '   Total number of jobs per processors:' ${NJP}
+#
+# Initiate NF varible
+@@ NF = $NJP
+#
+# Loop of jobs submitions
+while ( $N <= $NP) 
+   mkdir WDIR${N}
+   cp -rf potential.inp calc.x espec.x normf.x $PATH/WDIR${N} 
+   chdir $PATH/WDIR${N}
+   calc.x $PATH_IN $NI $NF > & Jobs_P${N} &
+   chdir $PATH
+   echo '      Jobs '$NI'-'$NF' submitted in processor: '${N}
+   @@ NI = $NI + $NJP
+   @@ NF = $NF + $NJP
+   @@ N ++
+end
+# End of the program.
+echo
+echo '   <<<>>> Jobs submitted in parallel! <<<>>> '
+echo
+
+@

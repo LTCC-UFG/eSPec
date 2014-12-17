@@ -1,0 +1,69 @@
+*** eSPec input file ***
+========================
+**MAIN
+*TITLE
+ +++++ eSPec input file test 3 +++++    
+*DIMENSION
+.1D
+ 256/
+*POTENTIAL
+.MORSE   !.OHS; .MORSE
+ 1.14600  1943.79  13.71/
+ 1.14600  1943.79  13.71/
+*GRID_RANGES
+ 0.5  2.8/
+*MASS
+ 7.49D0/
+*TPCALC
+.PROPAGATION
+*INIEIGVC
+.CALC
+*CHANGE
+.YES
+*PRTCRL
+.PARTIAL
+*PRTPOT
+.NO
+*PRTEIGVC
+.NO
+*PRTVEFF
+.NO
+*PRTEIGVC2
+.NO
+*PRTPULSE
+.NO
+*PRTDIPOLE
+.NO
+
+**TI
+*TPDIAG
+.LANCZS   !.LANCZS; MTRXDIAG 
+*NIST
+ 7  0/
+*ABSTOL
+ 1D-6/
+
+**TD
+*PROPAG
+.PPSOD
+ 0.0  2000.0  5D-5  10/
+*PULSE_AND_DIPOLE
+.GGAUS 
+ 1.5D+12  100.0  0.241  700.0  4.7124   1.0/
+.READ
+dipol2.inp
+*PRPGSTATE
+ 0/
+*TPTRANS
+.ONE
+*PRPTOL
+ 3D0/
+*NPROJECTIONS
+ 6  1
+
+**END
+
+
+
+
+

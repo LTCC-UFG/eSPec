@@ -1,0 +1,25 @@
+*** eSPec input file ***
+========================
+**MAIN
+*TITLE
+  +++++ eSPec input file test 8 +++++  
+*TPCALC
+.ONLYSPEC
+correl8.inp
+*CHANGE
+.YES
+*PRTCRL
+.PARTIAL
+
+**SPECTRUM
+*FOURIER
+ 13/
+*HWHM
+ 0.08  0.0  0.0  0.0/
+**END
+
+
+
+
+
+

@@ -1,0 +1,60 @@
+\contentsline {section}{\numberline {1}Introduction}{4}
+\contentsline {section}{\numberline {2}Theory}{4}
+\contentsline {subsection}{\numberline {2.1}Stationary eigenvalues and eigenstates}{4}
+\contentsline {subsection}{\numberline {2.2}Propagation of the wave packets}{4}
+\contentsline {subsubsection}{\numberline {2.2.1}SOD}{4}
+\contentsline {subsubsection}{\numberline {2.2.2}SIL}{4}
+\contentsline {subsubsection}{\numberline {2.2.3}SPO}{4}
+\contentsline {subsection}{\numberline {2.3}The vibrational resolved spectrum}{4}
+\contentsline {subsubsection}{\numberline {2.3.1}Time independet perturbation theory}{4}
+\contentsline {subsubsection}{\numberline {2.3.2}First order time dependent perturbation theory}{4}
+\contentsline {subsubsection}{\numberline {2.3.3}Second order time dependent perturbation theory}{4}
+\contentsline {subsubsection}{\numberline {2.3.4}Pump-probe theory}{4}
+\contentsline {section}{\numberline {3}Starting: softwear and compilation}{4}
+\contentsline {section}{\numberline {4}Making the input file}{5}
+\contentsline {section}{\numberline {5}Groups, subgroups, choices and parameters}{5}
+\contentsline {section}{\numberline {6}\textsl {**MAIN} group and its subgroups}{7}
+\contentsline {subsection}{\numberline {6.1}\textsl {*TITLE} (optional)}{7}
+\contentsline {subsection}{\numberline {6.2}\textsl {*TPCALC}}{7}
+\contentsline {subsection}{\numberline {6.3}\textsl {*DIMESION}}{9}
+\contentsline {subsection}{\numberline {6.4}\textsl {*TPTRANS}}{9}
+\contentsline {subsection}{\numberline {6.5}\textsl {*POTENTIAL}}{9}
+\contentsline {subsubsection}{\numberline {6.5.1}1-Dimension empirical potetials}{9}
+\contentsline {subsubsection}{\numberline {6.5.2}2-Dimension empirical potetials}{11}
+\contentsline {subsubsection}{\numberline {6.5.3}3-Dimension empirical potetials}{12}
+\contentsline {subsection}{\numberline {6.6}\textsl {*INITEIGVC}}{12}
+\contentsline {subsection}{\numberline {6.7}\textsl {*MASS}}{12}
+\contentsline {subsection}{\numberline {6.8}\textsl {*SEED} (optional)}{12}
+\contentsline {subsection}{\numberline {6.9}\textsl {*NSHOT} (optional)}{12}
+\contentsline {subsection}{\numberline {6.10}\textsl {*PRTEIGVC} (optional)}{12}
+\contentsline {subsection}{\numberline {6.11}\textsl {*PRTEIGVC2} (optional)}{13}
+\contentsline {subsection}{\numberline {6.12}\textsl {*PRTPOT} (optional)}{13}
+\contentsline {subsection}{\numberline {6.13}\textsl {*PRTVEFF} (optional)}{13}
+\contentsline {subsection}{\numberline {6.14}\textsl {*PRTPULSE} (optional)}{14}
+\contentsline {subsection}{\numberline {6.15}\textsl {*PRTDIPOLE} (optional)}{14}
+\contentsline {subsection}{\numberline {6.16}\textsl {*PRTCRL} (recommended)}{14}
+\contentsline {section}{\numberline {7}\textsl {**TI} group and its subgroups}{15}
+\contentsline {subsection}{\numberline {7.1}\textsl {*TPDIAG}}{15}
+\contentsline {subsection}{\numberline {7.2}\textsl {*NIST}}{15}
+\contentsline {subsection}{\numberline {7.3}\textsl {*NFST}}{15}
+\contentsline {subsection}{\numberline {7.4}\textsl {*ABSTOL} (optional)}{15}
+\contentsline {subsection}{\numberline {7.5}\textsl {*SEED} (optional)}{15}
+\contentsline {section}{\numberline {8}\textsl {**TD} group and its subgroups}{15}
+\contentsline {subsection}{\numberline {8.1}\textsl {*PROPAG}}{15}
+\contentsline {subsection}{\numberline {8.2}\textsl {*ABSORBING}}{15}
+\contentsline {subsection}{\numberline {8.3}\textsl {*PULSE\_AND\_DIPOLE}}{15}
+\contentsline {subsection}{\numberline {8.4}\textsl {*PRPGSTATE}}{15}
+\contentsline {subsection}{\numberline {8.5}\textsl {*TPTRANS}}{16}
+\contentsline {subsection}{\numberline {8.6}\textsl {*PRPTOL}}{16}
+\contentsline {subsection}{\numberline {8.7}\textsl {*NSHOT}}{16}
+\contentsline {subsection}{\numberline {8.8}\textsl {*NPROJECTIONS}}{16}
+\contentsline {subsection}{\numberline {8.9}\textsl {*FOURIER}}{16}
+\contentsline {section}{\numberline {9}\textsl {**SPECTRUM} group and its subgroups}{16}
+\contentsline {subsection}{\numberline {9.1}\textsl {*FOURIER}}{16}
+\contentsline {subsection}{\numberline {9.2}\textsl {*WINDOWING}}{16}
+\contentsline {section}{\numberline {10}Computing the vibrational resolved spectra}{16}
+\contentsline {subsection}{\numberline {10.1}Time independent theory}{16}
+\contentsline {subsection}{\numberline {10.2}First order time dependent perturbation theory}{16}
+\contentsline {subsection}{\numberline {10.3}Second order time dependent perturbation theory}{16}
+\contentsline {subsection}{\numberline {10.4}Pump-probe spectroscopy}{16}
+\contentsline {section}{\numberline {11}Conclusions}{16}

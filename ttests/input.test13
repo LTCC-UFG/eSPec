@@ -1,0 +1,57 @@
+*** eSPec input file ***
+========================
+**MAIN
+*TITLE
+ +++++ eSPec input file test 13 +++++
+*DIMENSION
+.1D
+ 201/
+*POTENTIAL
+.OHS             
+ 1.14600  1943.79/
+ 1.21100  1629.23/
+*GRID_RANGES
+ 0.5  2.8/
+*MASS
+ 7.49D0/
+*TPCALC
+.SPECTRUM
+.TD
+*INIEIGVC
+.CALC
+*CHANGE
+.YES
+*PRTCRL
+.PARTIAL
+
+**TI
+*TPDIAG
+.LANCZS   !.LANCZS; MTRXDIAG 
+*NIST
+ 7  0/
+*ABSTOL
+ 1D-6/
+
+**TD
+*PROPAG
+.PSIL
+ 0.0  250.0  2D-3  15/
+*PRPGSTATE
+ 0/
+*TPTRANS
+.ONE
+*PRPTOL
+ 3D0/
+
+**SPECTRUM
+*FOURIER
+ 12/
+*WINDOWING
+.SG
+ 1.0D-3/
+**END
+
+
+
+
+

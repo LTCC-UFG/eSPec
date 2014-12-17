@@ -1,0 +1,239 @@
+echo 'Compiling program eSPec ...'
+Compiling program eSPec ...
+make espec
+make[1]: Entering directory `/home/freddy/espec_v0.5'
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/espec.o src/espec.f
+src/espec.f: In program `espec':
+In file included from src/espec.f:54:
+src/espec.f:84: warning: unused variable 'dlamch'
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/rdinput.o src/rdinput.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/compar.o src/compar.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/chlength.o src/chlength.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/rdpt.o src/rdpt.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/gvpot.o src/gvpot.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/potfuncs.o src/potfuncs.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/mtrxdiag.o src/mtrxdiag.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/lanczs.o src/lanczs.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/lnz.o src/lnz.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/reort.o src/reort.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/ecnorm.o src/ecnorm.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/au.o src/au.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/au1d.o src/au1d.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/au2d.o src/au2d.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/au2dc.o src/au2dc.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/au3d.o src/au3d.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/rans.o src/rans.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/lanczsc.o src/lanczsc.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/rdpte.o src/rdpte.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dfdxi.o src/dfdxi.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/rif.o src/rif.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/sod.o src/sod.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/psod.o src/psod.f
+src/psod.f: In subroutine `psod':
+In file included from src/psod.f:0:
+src/psod.f:57: warning: unused variable 'fni'
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/sil.o src/sil.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/plnz.o src/plnz.f
+src/plnz.f: In subroutine `plnz':
+In file included from src/plnz.f:0:
+src/plnz.f:48: warning: unused variable 'fni'
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/fcorrel.o src/fcorrel.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/eigenerg.o src/eigenerg.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/spectrumtd.o src/spectrumtd.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/spectrumti.o src/spectrumti.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/makecst.o src/makecst.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/getcorr.o src/getcorr.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/prtpot.o src/prtpot.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/prteigvc.o src/prteigvc.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/ef.o src/ef.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/chpot.o src/chpot.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/ppsod.o src/ppsod.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/pplnz.o src/pplnz.f
+src/pplnz.f: In subroutine `pplnz':
+In file included from src/pplnz.f:0:
+src/pplnz.f:54: warning: unused variable 'fni'
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/hwhm.o src/hwhm.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dipl.o src/dipl.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/prpt2.o src/prpt2.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/rdpt2.o src/rdpt2.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/sodfft.o src/sodfft.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/psodfft.o src/psodfft.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/ddmtv.o src/ddmtv.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/ddmtvtn.o src/ddmtvtn.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dvtn.o src/dvtn.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/spofft.o src/spofft.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/pspofft.o src/pspofft.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dkeft.o src/dkeft.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/eigenergfft.o src/eigenergfft.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/eigenergfft1.o src/eigenergfft1.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/absorb.o src/absorb.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/s2ppsod.o src/s2ppsod.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/abm1.o src/abm1.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/s2ppabm.o src/s2ppabm.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/sod1.o src/sod1.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/s2ppabm2.o src/s2ppabm2.f
+src/s2ppabm2.f: In subroutine `s2ppabm2':
+In file included from src/s2ppabm2.f:0:
+src/s2ppabm2.f:75: warning: unused variable 'somgt3'
+src/s2ppabm2.f:75: warning: unused variable 'comgt3'
+src/s2ppabm2.f:75: warning: unused variable 'somgt1'
+src/s2ppabm2.f:75: warning: unused variable 'comgt1'
+src/s2ppabm2.f:73: warning: unused variable 'csefxdm'
+src/s2ppabm2.f:71: warning: unused variable 'efx'
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/init_cond.o src/init_cond.f
+src/init_cond.f: In subroutine `init_cond':
+In file included from src/init_cond.f:0:
+src/init_cond.f:30: warning: unused variable 'fcorrel'
+src/init_cond.f:19: warning: unused variable 'ffreq'
+src/init_cond.f:19: warning: unused variable 'twopi'
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/gauss.o src/gauss.f
+src/gauss.f: In function `get_gauss':
+In file included from src/gauss.f:0:
+src/gauss.f:13: warning: unused variable 'temp'
+make blas
+make[2]: Entering directory `/home/freddy/espec_v0.5'
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/lsame.o src/lsame.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dasum.o src/dasum.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dscal.o src/dscal.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dswap.o src/dswap.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/daxpy.o src/daxpy.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/ddot.o src/ddot.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dcopy.o src/dcopy.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/idamax.o src/idamax.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/xerbla.o src/xerbla.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dnrm2.o src/dnrm2.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dgemv.o src/dgemv.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dspmv.o src/dspmv.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dspr2.o src/dspr2.f
+src/dspr2.f: In subroutine `dspr2':
+In file included from src/dspr2.f:0:
+src/dspr2.f:99: warning: 'jx' might be used uninitialized in this function
+src/dspr2.f:99: warning: 'jy' might be used uninitialized in this function
+src/dspr2.f:99: warning: 'kx' might be used uninitialized in this function
+src/dspr2.f:99: warning: 'ky' might be used uninitialized in this function
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dger.o src/dger.f
+make[2]: Leaving directory `/home/freddy/espec_v0.5'
+make ffts
+make[2]: Entering directory `/home/freddy/espec_v0.5'
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/cfft.o src/cfft.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/fft3d.o src/fft3d.f
+src/fft3d.f: In subroutine `fft':
+In file included from src/fft3d.f:0:
+src/fft3d.f:84: warning: 'k3' might be used uninitialized in this function
+make[2]: Leaving directory `/home/freddy/espec_v0.5'
+make lapack
+make[2]: Entering directory `/home/freddy/espec_v0.5'
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dlagtf.o src/dlagtf.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dlartg.o src/dlartg.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dlassq.o src/dlassq.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dlaebz.o src/dlaebz.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dlasrt.o src/dlasrt.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dlarnv.o src/dlarnv.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dlagts.o src/dlagts.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dlaruv.o src/dlaruv.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dstevx.o src/dstevx.f
+src/dstevx.f: In subroutine `dstevx':
+In file included from src/dstevx.f:0:
+src/dstevx.f:155: warning: 'indibl' might be used uninitialized in this function
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dlamch.o src/dlamch.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dlapy2.o src/dlapy2.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dlasr.o src/dlasr.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dlascl.o src/dlascl.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dlae2.o src/dlae2.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dlanst.o src/dlanst.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dlaset.o src/dlaset.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dlaev2.o src/dlaev2.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/ieeeck.o src/ieeeck.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/ilaenv.o src/ilaenv.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dstebz.o src/dstebz.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dsterf.o src/dsterf.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dstein.o src/dstein.f
+src/dstein.f: In subroutine `dstein':
+In file included from src/dstein.f:0:
+src/dstein.f:120: warning: 'gpind' might be used uninitialized in this function
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dsteqr.o src/dsteqr.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dspevx.o src/dspevx.f
+src/dspevx.f: In subroutine `dspevx':
+In file included from src/dspevx.f:0:
+src/dspevx.f:147: warning: 'indibl' might be used uninitialized in this function
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dlansp.o src/dlansp.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dsptrd.o src/dsptrd.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dopgtr.o src/dopgtr.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dopmtr.o src/dopmtr.f
+src/dopmtr.f: In subroutine `dopmtr':
+In file included from src/dopmtr.f:0:
+src/dopmtr.f:93: warning: 'ic' might be used uninitialized in this function
+src/dopmtr.f:93: warning: 'jc' might be used uninitialized in this function
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dlarfg.o src/dlarfg.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dorg2l.o src/dorg2l.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dorg2r.o src/dorg2r.f
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/dlarf.o src/dlarf.f
+make[2]: Leaving directory `/home/freddy/espec_v0.5'
+g77  -O3 -i4 -ident -Wall -static -ffloat-store -o espec_v05.x src/espec.o src/rdinput.o src/compar.o src/chlength.o src/rdpt.o src/gvpot.o src/potfuncs.o src/mtrxdiag.o src/lanczs.o src/lnz.o src/reort.o src/ecnorm.o src/au.o src/au1d.o src/au2d.o src/au2dc.o src/au3d.o src/rans.o src/lanczsc.o src/rdpte.o src/dfdxi.o src/rif.o src/sod.o src/psod.o src/sil.o src/plnz.o src/fcorrel.o src/eigenerg.o src/spectrumtd.o src/spectrumti.o src/makecst.o src/getcorr.o src/prtpot.o src/prteigvc.o src/ef.o src/chpot.o src/ppsod.o src/pplnz.o src/hwhm.o src/dipl.o src/prpt2.o src/rdpt2.o src/sodfft.o src/psodfft.o src/ddmtv.o src/ddmtvtn.o src/dvtn.o src/spofft.o src/pspofft.o src/dkeft.o src/eigenergfft.o src/eigenergfft1.o src/absorb.o src/s2ppsod.o src/abm1.o src/s2ppabm.o src/sod1.o src/s2ppabm2.o src/init_cond.o src/gauss.o   src/lsame.o src/dasum.o src/dscal.o src/dswap.o src/daxpy.o src/ddot.o src/dcopy.o src/idamax.o src/xerbla.o src/dnrm2.o src/dgemv.o src/dspmv.o src/dspr2.o src/dger.o  src/dlagtf.o src/dlartg.o src/dlassq.o src/dlaebz.o src/dlasrt.o src/dlarnv.o src/dlagts.o src/dlaruv.o src/dstevx.o src/dlamch.o src/dlapy2.o src/dlasr.o src/dlascl.o src/dlae2.o src/dlanst.o src/dlaset.o src/dlaev2.o src/ieeeck.o src/ilaenv.o src/dstebz.o src/dsterf.o src/dstein.o src/dsteqr.o src/dspevx.o src/dlansp.o src/dsptrd.o src/dopgtr.o src/dopmtr.o src/dlarfg.o src/dorg2l.o src/dorg2r.o src/dlarf.o  src/cfft.o src/fft3d.o 
+size espec_v05.x
+   text	   data	    bss	    dec	    hex	filename
+ 753059	  30152	278478600	279261811	10a53273	espec_v05.x
+ln -sf espec_v05.x espec.x
+chmod a+xr espec_v05.x espec.x
+make[1]: Leaving directory `/home/freddy/espec_v0.5'
+echo 'Program eSPec compiled!'
+Program eSPec compiled!
+echo
+
+echo 'Compiling program normf ...'
+Compiling program normf ...
+make normf
+make[1]: Entering directory `/home/freddy/espec_v0.5'
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/normfs.o src/normfs.f
+src/normfs.f: In program `normf':
+In file included from src/normfs.f:0:
+src/normfs.f:23: warning: unused variable 'sg'
+src/normfs.f:15: warning: unused variable 'emf'
+src/normfs.f:15: warning: unused variable 'sum'
+f77 -O3 -i4 -ident -Wall -static -ffloat-store  -c -o src/spline.o src/spline.f
+make ffts
+make[2]: Entering directory `/home/freddy/espec_v0.5'
+make[2]: Nothing to be done for `ffts'.
+make[2]: Leaving directory `/home/freddy/espec_v0.5'
+g77  -O3 -i4 -ident -Wall -static -ffloat-store -o normf.x src/normfs.o src/cfft.o src/ecnorm.o src/spline.o
+size normf.x
+   text	   data	    bss	    dec	    hex	filename
+ 498451	   8616	541536200	542043267	204eec83	normf.x
+chmod a+xr normf.x
+make[1]: Leaving directory `/home/freddy/espec_v0.5'
+echo 'Program normf compiled!'
+Program normf compiled!
+echo 'Compiling program normfa ...'
+Compiling program normfa ...
+make normfa
+make[1]: Entering directory `/home/freddy/espec_v0.5'
+make[1]: Warning: File `src/spline.o' has modification time 0.21 s in the future
+make ffts
+make[2]: Entering directory `/home/freddy/espec_v0.5'
+make[2]: Nothing to be done for `ffts'.
+make[2]: Leaving directory `/home/freddy/espec_v0.5'
+g77  -O3 -i4 -ident -Wall -static -ffloat-store -o normfa.x src/normfsa.o src/cfft.o src/ecnorm.o src/spline.o
+size normfa.x
+   text	   data	    bss	    dec	    hex	filename
+ 498899	   8744	541536200	542043843	204eeec3	normfa.x
+chmod a+xr normfa.x
+make[1]: warning:  Clock skew detected.  Your build may be incomplete.
+make[1]: Leaving directory `/home/freddy/espec_v0.5'
+echo 'Program normf compiled!'	
+Program normf compiled!
+echo 'Compiling program normfb ...'
+Compiling program normfb ...
+make normfb
+make[1]: Entering directory `/home/freddy/espec_v0.5'
+make ffts
+make[2]: Entering directory `/home/freddy/espec_v0.5'
+make[2]: Nothing to be done for `ffts'.
+make[2]: Leaving directory `/home/freddy/espec_v0.5'
+g77  -O3 -i4 -ident -Wall -static -ffloat-store -o normfb.x src/normfsb.o src/cfft.o src/ecnorm.o src/spline.o
+size normfb.x
+   text	   data	    bss	    dec	    hex	filename
+ 498899	   8744	541536200	542043843	204eeec3	normfb.x
+chmod a+xr normfb.x
+make[1]: Leaving directory `/home/freddy/espec_v0.5'
+echo 'Program normf compiled!'
+Program normf compiled!

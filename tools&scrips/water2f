@@ -1,0 +1,67 @@
+*** eSPec input file ***
+========================
+**MAIN
+*TITLE
+Calculation of spectra for water dimer (the PES is given in file)
+*DIMENSION
+.2DC
+93 311/
+*POTENTIAL
+.FILE
+water2_1.pot
+*MASS
+0.9484D0  8.469D0  8.0220D0/ 
+*TPCALC
+.SPECTRUM
+.TD
+*INIEIGVC
+.CALC
+*CHANGE
+.YES
+*PRTCRL
+.PARTIAL
+*PRTPOT
+.YES
+*PRTEIGVC
+.YES
+*PRTEIGVC2
+.NO
+
+**TI
+*TPDIAG
+.LANCZS   !.LANCZS; MTRXDIAG 
+*NIST
+1 0/
+*ABSTOL
+1D-6/
+
+**TD
+*PROPAG
+.PSOD    !PSOD; PPSOD; PFSOD; PWSOD; PSIL; PPSIL; PFSPO; PWSPO 
+0.0 500.0 5D-5 10/
+*PRPGSTATE
+0/
+*TPTRANS
+.NONE
+*PRPTOL
+1D0/
+*HWHM
+0.0/
+*NSHOT
+10
+*ABSORBING
+.SMOOTHW
+0.001/
+1.5 3.2   1.5 3.2/
+
+**SPECTRUM
+*FOURIER
+13/
+*WINDOWING
+.SG
+1D-7/
+**END
+
+
+
+

@@ -1,0 +1,129 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2004.03.12.18.48.42;	author freddy;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#!/bin/csh
+#
+# input parameter 
+# 	PATH_INPUT = path of initial eigenfunctions
+#	NI = initial file
+#	NF = final file
+#
+set PATH_INPUT = $1
+set N = $2
+set NF = $3
+echo 'PATH_INPUT,N,NF,' "${PATH_INPUT}" "${N}" "${NF}"
+#
+#generate input file for eSPec
+#
+cat > input.spc << EOF 
+*** eSPec input file ***
+========================
+**MAIN
+*TITLE
+input to perform xray transition assisted by laser pulse
+*DIMENSION
+.1D
+512/
+*POTENTIAL
+.FILE
+data.inp
+*MASS
+7.49D0/
+*TPCALC
+.PROPAGATION
+*INIEIGVC
+.GET
+*CHANGE
+.YES
+*PRTCRL
+.PARTIAL
+*PRTPOT
+.YES
+*PRTEIGVC
+.YES
+*PRTVEFF
+.NO
+*PRTEIGVC2
+.YES
+*PRTPULSE
+.NO
+*PRTDIPOLE
+.NO
+
+**TD
+*PROPAG
+.PPSOD
+0.0 300.0 5D-5 10/
+*TPTRANS
+.NONE
+*PRPTOL
+3D0/
+*NSHOT
+2
+*ABSORBING
+.SMOOTHW
+0.001/
+0.4 3.1/
+
+**END
+EOF
+#
+# Run eSPec and normf programs to obtain the norm (<\psi(\ni)|\psi(\ni)>)
+# for different times t of  |\psi(\ni)> = FFT(\psi(t)>)
+#
+while($N <= $NF)
+   echo 'Processing job: '$N
+   if($N < 10)then
+#      cp $PATH_INPUT/ReIm_000${N}.dat .
+#      cat ReIm_000${N}.dat potential.inp > & data.inp
+   else if($N < 100)then
+#      cp $PATH_INPUT/ReIm_00${N}.dat .
+#      cat ReIm_00$(N).dat potential.inp > & data.inp
+   else if($N < 1000)then
+#      cp $PATH_INPUT/ReIm_0${N}.dat .
+#      cat ReIm_0$(N).dat potential.inp > & data.inp
+   else
+#      cp $PATH_INPUT/ReIm_$(N).dat .
+#      at ReIm_$(N).dat potential.inp > & data.inp
+   endif
+#
+#    echo 'eSPec time: '
+#   time espec.x > & xray_$(N).out
+#   rm -rf eigvc_* veff_* data.inp
+#
+#    echo 'normf time: '
+#   time normf.x > & norm_$(N).out
+#
+#   mkdir ../P_f$(N)
+#   cp norm_$(N).out ../P_f$(N)
+#   mv norm_$(N).out ../
+#   mv xray_$(N).out *.dat ../P_f$(N) 
+#
+   @@ N ++
+end
+echo 'All jobs processed!'
+
+
+
+
+
+@

@@ -1,0 +1,51 @@
+*** eSPec input file ***
+========================
+**MAIN
+*TITLE
+ +++++ eSPec input file test 7 +++++
+*DIMENSION
+.2DC
+ 60  160/
+*POTENTIAL
+.FILE
+water_2.pot
+*MASS
+ 0.9484D0  8.469D0  8.0220D0/ 
+*TPCALC
+.PROPAGATION
+*INIEIGVC
+.CALC
+*CHANGE
+.ON
+*PRTCRL
+.PARTIAL
+*PRTPOT
+.ON
+*PRTEIGVC
+.ON
+*DONOTSTOP
+.ON
+
+**TI
+*TPDIAG
+.LANCZSG   
+*NIST
+ 1  0/
+*ABSTOL
+ 1D-6/
+
+**TD
+*PROPAG
+.PSOD    
+ 0.0  15.0  1D-4/
+*PRPGSTATE
+ 0/
+*TPTRANS
+.ONE
+*PRPTOL
+ 1D0/
+
+**END
+
+
+

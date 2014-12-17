@@ -1,0 +1,121 @@
+      PROGRAM NORMF
+      IMPLICIT NONE
+c
+      REAL*8        NPRV, NPR, ZERO, MNPR, ONE
+      PARAMETER     (NPRV = 4096, NPR = 2048, ZERO = +0.0D+0)
+      PARAMETER     (MNPR = NPRV*NPR, ONE = 1.0D+0)
+c 
+      CHARACTER*4   CHNUM
+      CHARACTER*16  INFILE
+      CHARACTER*72  CHLX
+      INTEGER       I, J, M, NI, NJ, IFLTH, IOTEST
+      REAL*8        XL, SUM, WP, T, DT, DW, SG
+c
+      REAL*8        U(NPRV), V(NPRV), EUC(NPRV)
+      REAL*8        UM(NPRV,NPR), VM(NPRV,NPR)
+c 
+c      DATA UM / MNPR * ZERO /
+c      DATA VM / MNPR * ZERO /
+      DATA U / NPRV* ZERO /
+      DATA V / NPRV* ZERO /
+      DATA EUC / NPRV* ZERO /
+c    
+      INFILE = 'ReIm_0001.dat'
+      IFLTH = 13
+      WP = +1.0D-2
+c 
+      I = 1
+      OPEN(2, STATUS='OLD', FILE=INFILE(1:IFLTH), IOSTAT=IOTEST)
+      IF(IOTEST.NE.ZERO)THEN
+         WRITE(*,*)'<<<>>> Input file "', INFILE(1:IFLTH), 
+     &        '" cannot be opened <<<>>>'
+         STOP
+      ENDIF
+      READ(2,'(A)',END=999,ERR=999)CHLX
+      DO J=1,NPR,1
+         READ(2,*, END=10,ERR=10)XL, UM(I,J), VM(I,J)
+      ENDDO
+ 10   CONTINUE
+c
+      NJ = J - 1
+c
+      INFILE = 'ReIm_0002.dat'
+      OPEN(2, STATUS='OLD', FILE=INFILE(1:IFLTH), IOSTAT=IOTEST)
+      IF(IOTEST.NE.ZERO)GOTO 20
+      READ(2,*,END=999,ERR=999)CHLX,CHLX,DT
+      DO J=1,NJ,1
+         READ(2,*,END=999,ERR=999)XL, UM(I,J), VM(I,J)
+      ENDDO
+c
+      DO I=3,NPRV,1
+c         write(*,*)'i',i
+         WRITE(CHNUM,'(I4)')I
+         IF(I.LT.10)THEN
+            INFILE = 'ReIm_000'//CHNUM(4:4)//'.dat'
+         ELSEIF(I.LT.100)THEN
+            INFILE  = 'ReIm_00'//CHNUM(3:4)//'.dat'
+         ELSEIF(I.LT.1000)THEN
+            INFILE = 'ReIm_0'//CHNUM(2:4)//'.dat'
+         ELSEIF(I.LT.10000)THEN
+            INFILE = 'ReIm_'//CHNUM(1:4)//'.dat'
+         ELSE
+            WRITE(*,*)'Too many files to be printed. Stopping!'
+            STOP
+         ENDIF  
+         OPEN(2, STATUS='OLD', FILE=INFILE(1:IFLTH), IOSTAT=IOTEST)
+         IF(IOTEST.NE.ZERO)GOTO 20
+         READ(2,'(A)',END=999,ERR=999)CHLX
+         DO J=1,NJ,1
+            READ(2,*,END=999,ERR=999)XL, UM(I,J), VM(I,J)
+         ENDDO
+      ENDDO
+ 20   CONTINUE
+      NI = I - 1 
+      M = NINT(LOG(FLOAT(NI))/LOG(2.0D0))
+      DW = 1.0D0/(NI*DT)
+      NI = 2.0D+0**M
+c
+cccccccccccccccccccccccccccccccccccccccccccccccccccc
+c      write(*,*)'log2(2*ni)',M
+c      write(*,*)'ni,nj',ni,nj
+c      read(*,*)
+ccccccccccccccccccccccccccccccccccccccccccccccccccccc
+c      
+      DO J=1,NJ,1
+c         write(*,*)'j',j
+         DO I=1,NI,1
+            T = (I - ONE)*DT
+            U(I) = UM(I,J)
+            V(I) = VM(I,J)
+         ENDDO
+c
+         CALL FFTNT(U, V, NI, M, 1)
+c
+         DO I=1,NI,1
+            EUC(I) = EUC(I) + (U(I)*U(I)+V(I)*V(I))*DW*DW
+         ENDDO
+      ENDDO
+c
+      WRITE(*,1001)
+      DO I=1,NI,1
+         WRITE(*,1002)(I-1)*DW*1.519829846003D-1, EUC(NI-I+1)
+      ENDDO
+c
+      STOP
+c
+ 999  WRITE(*,*)'<<<>>> Reading file error, check and resubmit <<<>>>'
+      WRITE(*,*)INFILE
+      STOP
+c     ..
+ 1001 FORMAT(3X,'#w/a.u.#',5X,'#Int/arb. units#')
+ 1002 FORMAT(1X,E12.6,5X,E12.6)
+      END
+
+      FUNCTION SG(T,P)
+      IMPLICIT NONE
+      REAL*8 T, P, SG
+c
+      SG = DEXP(-T*T/P)
+c
+      RETURN
+      END

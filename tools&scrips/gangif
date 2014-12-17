@@ -1,0 +1,69 @@
+#!/bin/sh
+#
+input=$1
+#
+#####
+#
+echo "Generating the ps files"
+# get the dat files
+input_dat=`ls ${input}*.dat`
+# generate auxiliar file to create ps images
+cat > init1 <<EOF1
+set term post portrait color "Times-Roman" 28
+set terminal postscript eps "Times-Roman" 36
+set size 1.5,1.5
+set xrange[1.2:5]
+set yrange[0.0:0.2]
+set xlabel "r/a.u."
+set ylabel "Energia/a.u"
+EOF1
+for arg in ${input_dat}
+#for arg in ${input}*.dat
+do
+# uncomment below for debugging
+#echo $arg
+output=${arg%.*}.ps
+time=`awk '/# Time\/fs/' ${arg} | sed "s/# Time\/fs/t/"`
+cat > init2 <<EOF2
+set output "${output}"
+plot "${arg}" title '${time} fs' with lines lw 8.0, "veff_0001.dat" \
+notitle with lines lt 3 lw 4.0
+EOF2
+cat init1 init2 > init 
+cp -f init init1
+done
+echo "Generating the ps images"
+gnuplot < init
+rm -f init1 init2 init
+#
+#####
+#
+echo "Generating the gif files"
+# get the ps files
+input_ps=`ls ${input}*.ps`
+# generate the gif files
+for arg in ${input_ps}
+#for arg in ${input}*.ps
+do
+# uncomment below for debugging
+#echo ${arg}
+  output=${arg%.*}.gif
+  ps2gif --detail_ratio=1.0 --dpi=100 --margin_width=10 --rotate=0 \
+         --graphics_alpha_bits=4 --text_alpha_bits=4 \
+         ${arg} ${output}
+rm  ${arg}
+done
+#
+#####
+#
+echo "Generating the animated gif"
+# get the gif files
+input_gif=`ls ${input}*.gif`
+# generate the animated gif
+whirlgif -minimize -loop 0  -time 2 -o ${input}.gif ${input_gif}
+#whirlgif -minimize -loop 0  -time 2 -o ${input}.gif ${input}*.gif
+#
+#####
+#
+echo "Removing the ps and gif files"
+rm -f ${input_ps} ${input_gif} 
