@@ -313,7 +313,7 @@ c
 
       implicit double precision (a-h,o-z), integer (i-n)
 
-      parameter(kxmax=8,nxmax=350)
+      parameter(kxmax=8,nxmax=1000)
 
       dimension xdata(nx),xvec(nx),xknot(nx+kx),bcoef(nx)
       dimension work((2*kxmax-1)*nxmax)
@@ -632,7 +632,7 @@ c
 
       implicit double precision (a-h,o-z), integer (i-n)
 
-      parameter(kxmax=8,nxmax=350)
+      parameter(kxmax=8,nxmax=1000)
 
       dimension xvec(nxvec),xknot(nx+kx),bcoef(nx),val(nxvec)
       dimension dl(nxmax,kxmax),dr(nxmax,kxmax),save1(nxmax)
@@ -934,7 +934,7 @@ c
 
       implicit double precision (a-h,o-z), integer (i-n)
 
-      parameter(nxmax=256,kxmax=8,nymax=256,kymax=8)
+      parameter(nxmax=1000,kxmax=8,nymax=1000,kymax=8)
 
 c
 c     dimensions should be
@@ -1319,7 +1319,7 @@ c
       implicit double precision (a-h,o-z), integer (i-n)
 
       parameter(kxmax=8,kymax=8)
-      parameter(nxmax=500,nymax=500)
+      parameter(nxmax=1000,nymax=1000)
 
       dimension xvec(nxvec),xknot(nx+kx)
       dimension yvec(nyvec),yknot(ny+ky)

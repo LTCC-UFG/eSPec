@@ -1,0 +1,55 @@
+      PROGRAM CHECK2DCT
+      implicit none
+      INTEGER I,J,K,NP(3)
+      REAL*8 SHM(3),US(2000),AU(2000),VPOT(2000),ANS,A
+      REAL*8 X,XI,XF,Y,YI,YF,STEPX,STEPY,DIFF
+
+      write(*,*) "lol"
+      NP(1)=100
+      NP(2)=100
+      
+      XI=-0.5D+0
+      XF=0.5D+0
+      YI=-0.3D+0
+      YF=0.3D+0
+      
+      A = 1.0D+0
+      
+      STEPX = (XI - XF)/(NP(1) -1)
+      STEPY = (YI - YF)/(NP(2) -1)
+      SHM(1) = 1/(STEPX**2)
+      SHM(2) = 1/(STEPY**2)
+      SHM(3) = 1/(STEPX*STEPY)
+
+      write(*,*) "lol 2"
+
+      DO I=1,NP(1),1
+         X = XI + (I-1)*STEPX
+         DO J=1,NP(2),1
+            Y = YI + (J-1)*STEPY
+            K = I + (J-1)*NP(1)
+            US(K) = A*DEXP(-x**2)*DEXP(-y**2)
+            VPOT(K) = 0.0D+0
+         ENDDO
+      ENDDO
+      
+      write(*,*) "lol 3"
+
+      CALL AU_2DCT(NP, SHM, VPOT, US, AU)
+      write(*,*) "lol 4"
+
+      DO I=1,NP(1),1
+         X = XI + (I-1)*STEPX
+         DO J=1,NP(2),1
+            Y = YI + (J-1)*STEPY
+            K = I + (J-1)*NP(1)
+            ANS = 4*X*Y*A*DEXP(-x**2 - y**2)
+     &      + 4*X*X*A*DEXP(-x**2 - y**2) -2*A*DEXP(-x**2 - y**2)
+     &      + 4*Y*Y*A*DEXP(-x**2 - y**2) -2*A*DEXP(-x**2 - y**2)
+            DIFF = DABS(ANS-AU(K))
+            WRITE(*,*) X,Y,AU(K),ANS,DIFF
+         ENDDO
+      ENDDO
+
+      STOP
+      END

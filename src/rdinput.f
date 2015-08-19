@@ -8,19 +8,20 @@
      &     NP, ABSTOL, DT, DTF, TI, TF, TOL, WP, E0, TP, TD, T0, SNI, 
      &     OMG, CHWHM, DE, E1I, ADE, GAMMA, OMEGA, DMX, TPX, T0X, AA,
      &     QC, DELQ, CSTI, CSTF, CSTFB, CSTDM, SM, SMF, XI, XF, AL, AR,
-     &     rK, rA, X0, VOI, VAR)
+     &     rK, rA, X0, VOI, VAR,SHF,PRTREGION,NREG,RANGE,PRTONLYREIM)
       IMPLICIT NONE
 c     **
 c     ** Scalar arguments
       LOGICAL       ABSORB, CHANGE, PRTEGVC, PRTPOT, PRTVEFF, PRTEIGVC2
       LOGICAL       PRTPULS, PRTDIPL, LHWHM, FSTOP, SHIFTP
+      LOGICAL       PRTREGION,PRTONLYREIM
       CHARACTER*(*) INFL, TITLE, DIM, FILEAUX, POTCH, POTCHF, POTFILE
       CHARACTER*(*) POTFILEF, PRTCRL, TDI, TPABSOR, TPCLC, TPDIAG 
       CHARACTER*(*) TPPROPG, TPTRANS, TPWIND, TPDIPL, EFC, INIEIGVC 
       CHARACTER*(*) DMFILE
       INTEGER       IIL, IIU, NIS, IFL, IFU, MF, MP, MXCST, MXDM 
       INTEGER       NISPG, NFS, NFSPG, NSEED, NSHOT, NPR, NREORT
-      INTEGER       MAXINT, KP, KL, KLX
+      INTEGER       MAXINT, KP, KL, KLX,NREG
       REAL*8        ABSTOL, DT, DTF, TI, TF, TOL, WP, E0, TP, TD, T0
       REAL*8        SNI, OMG, CHWHM, DE, E1I, ADE
       REAL*8        GAMMA, OMEGA, DMX, TPX, T0X, AA, QC, DELQ
@@ -30,7 +31,8 @@ cdel      LOGICAL
       INTEGER       NP(*)
       REAL*8        CSTI(*), CSTF(*), CSTFB(*), SM(*), SMF(*), CSTDM(*)
       REAL*8        XI(*), XF(*), AL(*), AR(*), rK(*), rA(*), X0(*) 
-      REAL*8        VOI(*), VAR(*)      
+      REAL*8        VOI(*), VAR(*), SHF(*) 
+      REAL*8        RANGE(5,7)
 c     **
 *     ..
 *     Purpose
@@ -64,7 +66,7 @@ c     **
 c     ** Local scalars 
 cdel      LOGICAL
       CHARACTER*72  READAUX
-      INTEGER       I, INFLGTH, ITEST, ND
+      INTEGER       I, J,INFLGTH, ITEST, ND
       REAL*8        SKL, SKLX
 c     **
 c     ** Local arrays 
@@ -203,11 +205,12 @@ c               READ(1,*,END=999,ERR=999)(XI(I), XF(I), I=1,MXDM,1)
             ENDIF 
          ELSEIF(READAUX(1:12).EQ.'*GRID_RANGES')THEN
             READ(1,*,END=999,ERR=999)(XI(I), XF(I), I=1,MXDM,1)
+            write(*,*)xi(1),xf(1),xi(2),xf(2)
             IF(READAUX(14:15).EQ.'au')THEN 
                DO I=1,MXDM,1
                   XI(I) = XI(I)*A0A
                   XF(I) = XF(I)*A0A
-c                  write(*,*)xi(i),xf(i)
+                  write(*,*)xi(i),xf(i)
                ENDDO   
             ENDIF
          ELSEIF(READAUX(1:9).EQ.'*INIEIGVC')THEN
@@ -221,6 +224,13 @@ c            read(*,*)
 c            DO J=1,I,1
 c               SM(J)=SMAUX(I-J+1)
 c            ENDDO
+c *SCALING_GACTOR these constants multiply each one of the kinetic energy terms
+         ELSEIF(READAUX(1:11).EQ.'*SCALING_FACTOR')THEN 
+            READ(1,*,END=999,ERR=999)(SHF(I), I=1,MXCST,1)
+c debug
+         ELSEIF(READAUX(1:11).EQ.'*CROSS_TERM')THEN
+            READ(1,*,END=999,ERR=999)SHF(3)
+c            write(*,*)'>>> cross term',SHF(3)
 
          ELSEIF(READAUX(1:6).EQ.'*SEED')THEN
             READ(1,*,END=999,ERR=999)NSEED
@@ -250,6 +260,24 @@ c            ENDDO
             ELSE
                PRTEIGVC2 = .FALSE.
             ENDIF
+         ELSEIF(READAUX(1:10).EQ.'*PRTREGION')THEN
+            PRTREGION = .TRUE.
+            READ(1,*,END=999,ERR=999)NREG
+            IF(DIM(1:3).EQ.'.1D')THEN
+               DO I=1,NREG,1
+                  READ(1,*,END=999,ERR=999)(RANGE(I,J), J=1,2,1)
+               ENDDO
+            ELSEIF(DIM(1:3).EQ.'.2D')THEN
+               DO I=1,NREG,1
+                  READ(1,*,END=999,ERR=999)(RANGE(I,J), J=1,4,1)
+               ENDDO
+            ELSEIF(DIM(1:3).EQ.'.3D')THEN
+               DO I=1,NREG,1
+                  READ(1,*,END=999,ERR=999)(RANGE(I,J), J=1,6,1)
+               ENDDO
+            ENDIF
+         ELSEIF(READAUX(1:12).EQ.'*PRTONLYREIM')THEN
+            PRTONLYREIM = .TRUE.
          ELSEIF(READAUX(1:9).EQ.'*PRTEIGVC')THEN
             READ(1,'(A)',END=999,ERR=999)READAUX
             IF(READAUX(1:4).EQ.'.YES' .OR.
@@ -364,25 +392,29 @@ d            read(*,*)
             ENDIF
          ELSEIF(READAUX(1:12).EQ.'*GRID_RANGES')THEN
             READ(1,*,END=999,ERR=999)(XI(I), XF(I), I=1,MXDM,1)
-            IF(READAUX(14:15).NE.'au')THEN
+            write(*,*)'oi'
+            IF(READAUX(14:15).EQ.'au')THEN
                DO I=1,MXDM,1
-                  XI(I) = XI(I)/A0A
-                  XF(I) = XF(I)/A0A
+                  XI(I) = XI(I)*A0A
+                  XF(I) = XF(I)*A0A
                ENDDO   
             ENDIF
          ELSEIF(READAUX(1:15).EQ.'*INIT_POSSITION')THEN
             READ(1,*,END=999,ERR=999)(X0(I), I=1,MXDM,1)
-            IF(READAUX(17:18).NE.'au')THEN
+            IF(READAUX(17:18).EQ.'au')THEN
                DO I=1,MXDM,1
-                  X0(I) = X0(I)/A0A
+c vinicius 17/08/2011
+c
+c                  X0(I) = X0(I)*A0A
+c
                ENDDO
             ENDIF
          ELSEIF(READAUX(1:17).EQ.'*SIZE_OF_GAUSSIAN')THEN
             READ(1,*,END=999,ERR=999)(rA(I), I=1,MXDM,1)
 D            write(*,*)rA(1),rA(2),rA(3)
-            IF(READAUX(19:20).NE.'au')THEN
+            IF(READAUX(19:20).EQ.'au')THEN
                DO I=1,MXDM,1
-                  rA(I) = rA(I)/A0A
+                  rA(I) = rA(I)*A0A
                ENDDO
             ENDIF
          ELSE 

@@ -2,14 +2,15 @@
      &     PRTCRL, TPABSOR, INFO, LC, MP, MPI, MPR, MXDCT, N, NSHOT, 
      &     NPR, KP, NISPG, E0, T0, TD, TP, OMG, SNI, KL, DT, TI, TF, 
      &     TOL, NP, ND, SH, SHM, U1, U2, V1, V2, XI, XP, XF, DM, VPOT, 
-     &     VABC, WORK, VAR, LNZVC) 
+     &     VABC, WORK, VAR, LNZVC,PRTREGION,NREG,RANGE,PRTONLYREIM) 
       IMPLICIT NONE
 c     **
 c     ** Scalar arguments 
       LOGICAL       ABSORB, PRTVEFF, PRTEIGVC2, PRTPULS 
+      LOGICAL       PRTREGION,PRTONLYREIM
       CHARACTER*(*) DIM, EFC, PRTCRL, TPABSOR
       INTEGER       INFO, LC, MP, MPI, MPR, MXDCT, N, NSHOT, NPR, KP
-      INTEGER       NISPG, KL, NF
+      INTEGER       NISPG, KL, NF,NREG
       REAL*8        DT, TI, TF, TOL, E0, T0, TD, TP, OMG, SNI
 c     **
 c     ** Array arguments
@@ -19,6 +20,7 @@ cdel      CHARACTER*(*)
       REAL*8        SH(*), SHM(*), U1(*), U2(*), V1(*), V2(*), XI(*)
       REAL*8        XP(*), DM(*), XF(*), VPOT(*), VABC(*), WORK(*)
       REAL*8        VAR(*), LNZVC(MXDCT,*)
+      REAL*8        RANGE(5,7)
 c     **
 *     ..
 *     Purpose
@@ -75,12 +77,19 @@ c     ** Intrinsic functions
 c     .. Start program      
 c     ..
 c     .. Starting values
+
+c debug vinicius 11/10/2011 
+c      print*, ">> zero"
+c debug vinicius 11/10/2011 
       INFO = ZERO
       NC = ONE
       T = TI
       SHFS = 2.4188843243D-2 !fs/a.u.(t) [hbar/E_{h}]
       CST = TWO*DT/SHFS
       MC1 = ZERO
+c debug vinicius 11/10/2011 
+c      print*, "one"
+c debug vinicius 11/10/2011 
       DO I=1,N,1
          VP(I) = VPOT(I)
          U0(I) = U1(I)
@@ -94,6 +103,12 @@ c     .. Starting values
          IF(NPR-5.GE.ZERO)W5(I) = LNZVC(I,KP+5)
          IF(NPR-6.GE.ZERO)W6(I) = LNZVC(I,KP+6)
       ENDDO
+
+c debug vinicius 11/10/2011 
+c      print*, "two"
+c debug vinicius 11/10/2011 
+
+
 c 
 D      CR = FCORREL(N, U0, U2) + FCORREL(N, V0, V2)
 D      CI = FCORREL(N, U0, V2) - FCORREL(N, V0, U2)
@@ -136,6 +151,12 @@ c
             CI = FCORREL(N, W6, V2)
             CT(7) = CR**2 + CI**2
          ENDIF
+
+c debug vinicius 11/10/2011 
+c      print*, "three"
+c debug vinicius 11/10/2011 
+
+
          CR = FCORREL(N, U0, U2) + FCORREL(N, V0, V2)
          CI = FCORREL(N, U0, V2) - FCORREL(N, V0, U2)
          LNZVC(NC,MPR) = CR
@@ -156,6 +177,11 @@ D         print *,EI
          ET0  = (ER0 + EI0)
          EINI = ET
 c
+
+c debug vinicius 11/10/2011 
+c         print*, "four", ABSORB
+c debug vinicius 11/10/2011 
+
          WRITE(*,*)
          IF(DIM.EQ.'.1D')THEN
             WRITE(*,*)'Auto-correlation function:'
@@ -194,8 +220,27 @@ c
             WRITE(22,*)'set ylabel "S/a.u."'
             WRITE(22,*)'#set output "',NEWNAM1,'"'
             WRITE(22,1031)NEWNAM1,t,NEWNAM3
-            CALL PRTPT(NEWNAM1, 9, ND, T, NP, XP, XI, SH, WORK)
-            CALL PRPT2(NEWNAM3, 8, ND, T, NP, XP, XI, SH, U2, V2)
+            IF(PRTONLYREIM)THEN
+               IF(PRTREGION)THEN
+                  !write(*,*) 'not quite ready yet 1'
+                  !write(*,*) '>> 1'
+                  CALL PRPT2REG(NEWNAM3, 8, ND, T, NP, XP, XI, SH, 
+     &                 U2, V2,NREG,RANGE)
+               ELSE
+                  CALL PRPT2(NEWNAM3, 8, ND, T, NP, XP, XI, SH, U2, V2)
+               ENDIF
+            ELSE
+               IF(PRTREGION)THEN
+                  !write(*,*) 'not quite ready yet 2'
+                  CALL PRTPTREG(NEWNAM1, 9, ND, T, NP, XP, XI, SH, WORK,
+     &                 NREG,RANGE) 
+                  CALL PRPT2REG(NEWNAM3, 8, ND, T, NP, XP, XI, SH, 
+     &                 U2, V2,NREG,RANGE)        
+               ELSE
+                  CALL PRTPT(NEWNAM1, 9, ND, T, NP, XP, XI, SH, WORK)
+                  CALL PRPT2(NEWNAM3, 8, ND, T, NP, XP, XI, SH, U2, V2)
+               ENDIF
+            ENDIF          
          ENDIF
          IF(PRTPULS)THEN
             OPEN(UNIT=21,STATUS='UNKNOWN',FILE='pulse.dat')
@@ -219,12 +264,15 @@ c
 c     
       IF(PRTCRL(1:4).EQ.'.YES' .OR. 
      &     PRTCRL(1:8).EQ.'.PARTIAL' .AND. MC.EQ.LC)THEN
+c         do 
          IF(NPR-1.GE.ZERO)THEN
+c            CR = FCORREL(N, W1(i), U2)
             CR = FCORREL(N, W1, U2)
             CI = FCORREL(N, W1, V2)
 c            write(11,*)T, CR, CI
             CT(2) = CR**2 + CI**2
          ENDIF
+c         enddo
          IF(NPR-2.GE.ZERO)THEN
             CR = FCORREL(N, W2, U2)
             CI = FCORREL(N, W2, V2)
@@ -291,8 +339,29 @@ c         IF(MC.EQ.ZERO) MC1 = MC1 + ONE
                ENDDO
                WRITE(22,*)'#set output "',NEWNAM1,'"'
                WRITE(22,1031)NEWNAM1,t,NEWNAM3
-               CALL PRTPT(NEWNAM1, 9, ND, T, NP, XP, XI, SH, WORK)
-               CALL PRPT2(NEWNAM3, 8, ND, T, NP, XP, XI, SH, U2, V2)
+               IF(PRTONLYREIM)THEN
+                  IF(PRTREGION)THEN
+                     !write(*,*) 'not quite ready yet 1'
+                     !write(*,*) '>> 2'
+                     CALL PRPT2REG(NEWNAM3, 8, ND, T, NP, XP, XI, SH, 
+     &                 U2, V2,NREG,RANGE)
+                  ELSE
+                     CALL PRPT2(NEWNAM3, 8, ND, T, NP, XP, XI, SH, U2, 
+     &                    V2)
+                  ENDIF
+               ELSE
+                  IF(PRTREGION)THEN
+                     !write(*,*) 'not quite ready yet 2'
+                     CALL PRTPTREG(NEWNAM1, 9, ND, T, NP, XP, XI, SH, 
+     &                 WORK,NREG,RANGE) 
+                     CALL PRPT2REG(NEWNAM3, 8, ND, T, NP, XP, XI, SH, 
+     &                 U2, V2,NREG,RANGE)        
+                  ELSE
+                     CALL PRTPT(NEWNAM1, 9, ND, T, NP, XP, XI, SH, WORK)
+                     CALL PRPT2(NEWNAM3, 8, ND, T, NP, XP, XI, SH, U2, 
+     &                    V2)
+                  ENDIF
+               ENDIF   
             ENDIF
          ENDIF
          IF(PRTPULS)THEN
@@ -306,11 +375,11 @@ c
          V1(I) = V0(I)
       ENDDO
 c
-      DO T=TI+2*DT,TF+DT/2,DT
-c      T = TI + DT
-c      NF = NINT((TF+DT/2 - T)/DT)
-c      DO K=1,NF,1
-c         T = T + DT
+c      DO T=TI+2*DT,TF+DT/2,DT
+      T = TI + DT
+      NF = NINT((TF+DT/2 - T)/DT)
+      DO K=1,NF,1
+         T = T + DT
 c     .. Steps in the propagation towards t (SOD).
          CALL CHPOT(EFC, N, E0, T0, TD, TP, T, OMG, SNI, KL, DM, VP, 
      &        VPOT)
@@ -420,8 +489,30 @@ c
                   ENDDO
                   WRITE(22,*)'#set output "',NEWNAM1,'"'
                   WRITE(22,1031)NEWNAM1,t,NEWNAM3
-                  CALL PRTPT(NEWNAM1, 9, ND, T, NP, XP, XI, SH, WORK)
-                  CALL PRPT2(NEWNAM3, 8, ND, T, NP, XP, XI, SH, U2, V2)
+                  IF(PRTONLYREIM)THEN
+                     IF(PRTREGION)THEN
+                        !write(*,*) 'not quite ready yet 1'
+                        !write(*,*) '>> 3'
+                        CALL PRPT2REG(NEWNAM3, 8, ND, T, NP, XP, XI, SH, 
+     &                 U2, V2,NREG,RANGE)
+                     ELSE
+                        CALL PRPT2(NEWNAM3, 8, ND, T, NP, XP, XI, SH, U2
+     &                       , V2)
+                     ENDIF
+                  ELSE
+                     IF(PRTREGION)THEN
+                        !write(*,*) 'not quite ready yet 2'
+                        CALL PRTPTREG(NEWNAM1, 9, ND, T, NP, XP, XI, SH, 
+     &                       WORK,NREG,RANGE) 
+                        CALL PRPT2REG(NEWNAM3, 8, ND, T, NP, XP, XI, SH, 
+     &                 U2, V2,NREG,RANGE)        
+                     ELSE
+                        CALL PRTPT(NEWNAM1, 9, ND, T, NP, XP, XI, SH, 
+     &                       WORK)
+                        CALL PRPT2(NEWNAM3, 8, ND, T, NP, XP, XI, SH, U2
+     &                       , V2)
+                     ENDIF
+                  ENDIF           
                ENDIF
             ENDIF
             IF(PRTPULS)THEN
@@ -449,8 +540,8 @@ c     ..
  1012 FORMAT(/,8X,'*t/fs*',5X,'*ET/a.u.*',6X,'*E0/a.u.*',6X,'*Pr(t)*'
      &     ,4X,'*Pi(t)*',3X,8(A3,I2,A4,3X))
  1021 FORMAT(1X,F14.6,3X,2(E12.6,3X),2(F8.5,3X),10(F8.6,3X))
- 1031 FORMAT('plot "',A14,'" title `',F9.4,1X,
-     &     'fs` with lines lw 2.0, ','"',A13,
+ 1031 FORMAT('plot "',A14,'" title ''',F9.4,1X,
+     &     'fs'' with lines lw 2.0, ','"',A13,
      &     '" notitle with lines lw 2.1, ',
      &     '"veff_0001.dat" notitle with lines lt 3 lw 2.2')
       RETURN

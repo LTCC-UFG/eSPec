@@ -792,7 +792,7 @@ c
 
       IMPLICIT DOUBLE PRECISION (A-H,O-Z), INTEGER (I-N)
 
-      PARAMETER(NXMAX=512,KXMAX=8,NYMAX=512,KYMAX=8)
+      PARAMETER(NXMAX=1000,KXMAX=8,NYMAX=1000,KYMAX=8)
 
 c
 c     dimensions should be
@@ -1177,7 +1177,7 @@ c
       implicit double precision (a-h,o-z), integer (i-n)
 
       parameter(kxmax=8,kymax=8)
-      parameter(nxmax=512,nymax=512)
+      parameter(nxmax=1000,nymax=1000)
 
       dimension xvec(nxvec),xknot(nx+kx)
       dimension yvec(nyvec),yknot(ny+ky)

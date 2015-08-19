@@ -61,6 +61,8 @@ D      print *, var(1)
 D      read(*,*)
       IF(DIM(1:3).EQ.'.1D')THEN
          CALL AU_1D(N, SHM, VPOT, U, WORK)
+      ELSEIF(DIM(1:5).EQ.'.2DCT')THEN
+         CALL AU_2DCT(NP, SHM, VPOT, U, WORK)
       ELSEIF(DIM(1:4).EQ.'.2DC')THEN
          CALL AU_2DC(NP, SHM, VPOT, U, WORK)
       ELSEIF(DIM(1:4).EQ.'.2DT')THEN

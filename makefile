@@ -1,4 +1,4 @@
-VERSION = 06
+VERSION = 07
 TARGET = Linux-i686
 #
 PROG = espec_v$(VERSION).x
@@ -8,9 +8,18 @@ PROG = espec_v$(VERSION).x
 #                       work in Opteron machines, since this machines 
 #                       are already 64 bits.
 #   FFLAGS = -O3 -i4 -ident -Wall -static -malign-double
-   FFLAGS = -O3 -Wall -std=gnu -fdefault-double-8 -fdefault-real-8 -static -march=native -ffloat-store -ffixed-line-length-none -fd-lines-as-comments
-   FC = gfortran
-   FFC = gfortran
+#   FFLAGS = -O3 -Wall -static -march=native -ffloat-store -ffixed-line-length-none -fd-lines-as-comments
+#   FFLAGS = -fast -traceback
+FFlAGS = -traceback -mcmodel large 
+# ifort flags: 
+# -fast     enable -xHOST -O3 -ipo -no-prec-div -static options set by -fast cannot be overridden with the exception of -xHOST, list options separately to change behavior
+# -xSSE3 (CORE(tm)2 processors)
+# -xSSE4.2 (i7 processors)
+#  -traceback for debugs
+#
+#-static
+   FC = ifort
+#   FC = gfortran
 # Digital 
 #   FFLAGS = -O0 -i4 -ident -o $@ 
 #   FC = f77 
@@ -41,12 +50,14 @@ ESPEC_OBJS = src/rdinput.o src/compar.o src/chlength.o src/rdpt.o \
         src/au2dc.o src/au3d.o src/rans.o src/lanczsc.o src/rdpte.o \
 	src/dfdxi.o src/rif.o src/sod.o src/psod.o src/sil.o src/plnz.o \
 	src/fcorrel.o src/eigenerg.o src/spectrumtd.o src/spectrumti.o \
+	src/transdipole.o \
 	src/makecst.o src/getcorr.o src/prtpot.o src/prteigvc.o src/ef.o \
 	src/chpot.o src/ppsod.o src/pplnz.o src/hwhm.o src/dipl.o src/prpt2.o \
 	src/rdpt2.o src/sodfft.o src/psodfft.o src/ddmtv.o src/ddmtvtn.o \
 	src/dvtn.o src/spofft.o src/pspofft.o src/dkeft.o src/eigenergfft.o \
 	src/eigenergfft1.o src/absorb.o src/s2ppsod.o src/abm1.o \
-	src/s2ppabm.o src/sod1.o src/s2ppabm2.o src/init_cond.o src/gauss.o 
+	src/s2ppabm.o src/sod1.o src/s2ppabm2.o src/init_cond.o src/gauss.o \
+	src/ap1d.o src/ap2d.o src/ap2dct.o src/au2dct.o 
 #
 XESPEC_OBJS =	
 #
@@ -102,7 +113,7 @@ espec:  $(OBJS)
 	make blas
 	make ffts
 	make lapack
-	$(FFC) $(FFLAGS) -o $(PROG) $(OBJS) $(BLAS_OBJS) $(LAPACK_OBJS) $(FFTS_OBJS)
+	$(FC) $(FFLAGS) -o $(PROG) $(OBJS) $(BLAS_OBJS) $(LAPACK_OBJS) $(FFTS_OBJS) -static
 	size $(PROG)
 	ln -sf $(PROG) espec.x
 	chmod a+xr $(PROG) espec.x

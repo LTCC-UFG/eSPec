@@ -2,6 +2,8 @@ c     .. Read potential from file called INFILE
 c     =========================================
       SUBROUTINE RDPT2(INFILE, NT, ND, XI, XF, U, V)
       IMPLICIT NONE
+C 
+C vinicius: this one reads complex wavefunctions (U,V)
 c     **
 c     ** Scalar arguments 
 cdel      LOGICAL

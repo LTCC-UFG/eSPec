@@ -76,14 +76,28 @@ c
       NSEED = 1
       NSEEDAUX = NSEED
       DO I=1,N,1
-         VI(I) = RAN(NSEEDAUX) 
+         VI(I) = RAN(NSEEDAUX)
+c         VI(I) = 1.0d+0 
       ENDDO
 c     
       CALL LNZ(CHANGE, DIM, N, N, NREORT, LMTREORT, MXDCT, NP, SHM, 
      &     VPOT, V0, VI, WK1, AL, BT, VAR, LNZVC)
+
+c      do i=1,n,1
+c         write(1,*)i,al(i), bt(i)
+c      enddo
+
 c
       CALL DSTEVX('V', 'I', N, AL, BT, VL, VU, IL, IU, ABSTOL,
      &        M, EIGVL, EIGVC, MXDCT, WK2, IWK, INFO)
+
+c      do i=1,iu-il+1,1
+c         write(2,*)i,eigvl(i)
+c     enddo
+c      do i=1,n,1
+c         write(3,*)i,(eigvc(i,j),j=1,n,1)
+c      enddo
+
 c     
       NC = IL - TWO
 c

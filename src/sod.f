@@ -62,6 +62,10 @@ cdel      INTRINSIC
 c     .. Start program  
       CALL AU(DIM, N, NP, SHM, VPOT, V2, WORK, VAR)    
 c     
+c     vinicius debug 16/04/2012
+C      print*, ">>>>",ABSORB
+C      ABSORB=.FALSE.
+C      print*, ">>>>",ABSORB
       IF(ABSORB)THEN
          IF(TPABSOR(1:7).EQ.'.VOPTIC')THEN
             DO I=1,N,1  

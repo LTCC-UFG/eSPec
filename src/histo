@@ -1,0 +1,1000 @@
+  494  rsync -av /media/vinicius/Daniboy/Vin_Backup/* /media/vinicius/VIN_BACKUP/
+  495  ls
+  496  cd sweden_jobs/
+  497  ls
+  498  cd Raman_CS2/
+  499  ls
+  500  cd surface/outputs/
+  501  ls
+  502  cd outsdg/
+  503  ls gsCS2-0.000000_*
+  504  grep -i error gsCS2-0.000000_*
+  505  ls
+  506  cd ..
+  507  ls
+  508  cd ..
+  509  ls
+  510  cd gs/
+  511  ls
+  512  cd ..
+  513  ls
+  514  cd gs/
+  515  ls
+  516  more lol.sh 
+  517  cd ..
+  518  la
+  519  ls
+  520  cd ..
+  521  ls
+  522  cd surface/
+  523  ls
+  524  cd ce1/
+  525  ls
+  526  cd ..
+  527  ls
+  528  cd ..
+  529  ls
+  530  cd surface/
+  531  ls
+  532  cd gs/]
+  533  cd ..
+  534  ls
+  535  cd bend1d/
+  536  ls
+  537  cd ..
+  538  ls
+  539  cd ..
+  540  lçw
+  541  lw
+  542  ls
+  543  cd CS2/
+  544  ls
+  545  cd geom/
+  546  ls
+  547  cd Z+1/
+  548  ls
+  549  cd ..
+  550  ls
+  551  cd ..
+  552  ls
+  553  cd results/
+  554  ls
+  555  cd ..
+  556  ls
+  557  cd ..
+  558  ls
+  559  cd vibroniccoupling/
+  560  ls
+  561  cd CS2/
+  562  ls
+  563  cd ..
+  564  ls
+  565  cd ..
+  566  ls
+  567  cd ..
+  568  ls
+  569  cd sweden_jobs/
+  570  ls
+  571  cd Raman_CS2/
+  572  ls
+  573  cd dipole/
+  574  ls
+  575  more bend_asym_inputs.sh
+  576  ls
+  577  emacs bend_asym_inputs.sh
+  578  ls
+  579  cd outs/
+  580  ls
+  581  cd ..
+  582  ls
+  583  cd dalton/
+  584  ls
+  585  cd ..
+  586  ls
+  587  cd ..
+  588  ls
+  589  cd rovib
+  590  ls
+  591  gnuplot
+  592  ls
+  593  cd ..
+  594  ls
+  595  cd ..
+  596  ls
+  597  cd sweden_jobs/
+  598  ls
+  599  cd Raman_CS2/
+  600  ls
+  601  cd normalcoord/
+  602  ls
+  603  emacs norcord.c
+  604  bg
+  605  emacs input.dat
+  606  sudo rsync -av /media/vinicius/Daniboy/Vin_Backup/* /media/vinicius/VIN_BACKUP/
+  607  df -h
+  608  sudo rsync -av /media/vinicius/Daniboy/Vin_Backup/* /media/vinicius/VIN_BACKUP/
+  609  sudo gparted
+  610  cd /media/vinicius/VIN_MASTER_HD/
+  611  ls
+  612  cd SWEDEN\ files/
+  613  ls
+  614  cd Raman/
+  615  ls
+  616  cd surface/
+  617  ls
+  618  cd gs/
+  619  ls
+  620  cd ..
+  621  ls
+  622  cd outputs/
+  623  ls
+  624  cd outsdg/
+  625  ls
+  626  ls gsCS2-0.000000_*
+  627  more gsCS2-0.000000_-0.696970.out
+  628  ls
+  629  ls *.sh
+  630  cd ..
+  631  ls
+  632  more unconv 
+  633  cd ..
+  634  ls
+  635  cd gs
+  636  ls
+  637  lls *.sh
+  638  ls *.sh
+  639  more prespl.sh 
+  640  cd ..
+  641  ls
+  642  cd ..
+  643  ls
+  644  cd spline/
+  645  ls
+  646  cd ..
+  647  ls
+  648  cd surface/
+  649  ls
+  650  cd outputs/
+  651  ls *.sh
+  652  cd ..
+  653  l
+  654  ls
+  655  exit
+  656  ssh arrhenius 
+  657  emacs .bashrc &
+  658  bg
+  659  sudo apt-get install logkeys
+  660  klog
+  661  bash
+  662  klog
+  663  sudo klog
+  664  emacs pt_BR.map
+  665  klog
+  666  lol
+  667  penis hughe mine is a really one
+  668  stopklog 
+  669  sudo emacs klog.out 
+  670  gnuplot
+  671  cd written/
+  672  ls
+  673  cd ..
+  674  cd written/
+  675  cd monografia
+  676  ls
+  677  more teoria.tex
+  678  cd ..
+  679  ls
+  680  cd ..
+  681  ls
+  682  cd ..
+  683  ls
+  684  emacs HCl.tex &
+  685  bg
+  686  ls
+  687  mv images/ figs
+  688  cd figs/
+  689  ls
+  690  ps2pdf -dEPScrop spatial_effect.eps
+  691  ld
+  692  ls
+  693  mv spatial_effect.pdf spatial.pdf
+  694  cd ..
+  695  latex HCl.tex 
+  696  pdflatex HCl.tex 
+  697  evince HCl.pdf &
+  698  evince figs/spatial.pdf 
+  699  cd figs/
+  700  ps2pdf -dEPSCrop spatial.pdf 
+  701  ps2pdf -dEPSCrop spatial_effect.eps 
+  702  evince spatial_effect.pdf 
+  703  mv spatial_effect.pdf spatial.pdf
+  704  cd ..
+  705  pdflatex HCl.tex 
+  706  converter 2.8 ev au
+  707  bash
+  708  converter 2.8 ev au
+  709  bc -
+  710  bc -l
+  711  converter 11.6034 fs au
+  712  bc -l
+  713  pdflatex HCl.tex 
+  714  ls
+  715  cd HHCl_NEWW/
+  716  ls
+  717  cd csqs/phase_analysis/
+  718  ls
+  719  cd wp0.9-0.1/
+  720  ls
+  721  scp arrhenius:/home/vinicius/HHCl_NEWW/csqs/time_2.5D+100.18D+3-wp0.9/aux/WPackets.tar.gz .
+  722  ls
+  723  descomp WPackets.tar.gz 
+  724  bash
+  725  descomp WPackets.tar.gz 
+  726  ls
+  727  ./runphase.sh 
+  728  ./getphase 
+  729  emacs selected_initial_cond.dat
+  730  bg
+  731  ./getphase 
+  732  ls
+  733  cat selected_initial_cond.dat
+  734  cp ReIm_1924.dat wf_0.9-t0.dat
+  735  cp ReIm_2246.dat wf_0.9-t1.dat
+  736  cp ReIm_2569.dat wf_0.9-t2.dat
+  737  cp ReIm_2891.dat wf_0.9-t3.dat
+  738  cp ReIm_3213.dat wf_0.9-t4.dat
+  739  cp ReIm_3536.dat wf_0.9-t5.dat
+  740  cp ReIm_3858.dat wf_0.9-t6.dat
+  741  cp ReIm_4180.dat wf_0.9-t7.dat
+  742  cp ReIm_4502.dat wf_0.9-t8.dat
+  743  scp wf_0.9-t* arrhenius:/home/vinicius/HHCl_NEWW/collisions/wp_0.9/
+  744  bc -l
+  745  ls
+  746  cd ..
+  747  ls
+  748  cd wp0.1-0.9/
+  749  ls
+  750  scp arrhenius:/home/vinicius/HHCl_NEWW/csqs/time_2.5D+100.71D+3-wp0.1/aux/WPackets.tar.gz .
+  751  ls
+  752  cp ../wp0.9-0.1/runphase.sh .
+  753  cp ../wp0.9-0.1/phase .
+  754  cp ../wp0.9-0.1/getphase .
+  755  ls
+  756  descomp WPackets.tar.gz 
+  757  ls
+  758  ./runphase.sh 
+  759  ./getphase 
+  760  emacs selected_initial_cond.dat&
+  761  ./getphase 
+  762  ls
+  763  more selected_initial_cond.dat 
+  764  cp ReIm_1934.dat wf_0.1_t0.dat
+  765  cp ReIm_1934.dat wf_0.1-t0.dat
+  766  rm wf_0.1_t0.dat
+  767  cp ReIm_2256.dat wf_0.1-t1.dat 
+  768  cp ReIm_2578.dat wf_0.1-t2.dat
+  769  cp ReIm_2900.dat wf_0.1-t3.dat
+  770  cp ReIm_3223.dat wf_0.1-t4.dat
+  771  cp ReIm_3545.dat wf_0.1-t5.dat
+  772  cp ReIm_3867.dat wf_0.1-t6.dat
+  773  cp ReIm_4190.dat wf_0.1-t7.dat
+  774  cp ReIm_4511.dat wf_0.1-t8.dat
+  775  more selected_initial_cond.dat 
+  776  ls
+  777  scp wf_0.1-t* arrhenius:/home/vinicius/HHCl_NEWW/collisions/wp_0.1/
+  778  ls ../
+  779  cd ..
+  780  ls
+  781  cd wp0.25-0.75
+  782  ls
+  783  cp getphase phase runphase.sh ../wp0.9-0.1/
+  784  cd ..
+  785  ls
+  786  cd wp0.9-0.1
+  787  ls
+  788  cd ..
+  789  cd wp0.25-0.75/
+  790  bc -l
+  791  ssh arrhenius 
+  792  gnuplot
+  793  bc -l
+  794  ls
+  795  cd HHCl_NEWW/
+  796  ls
+  797  cd collisions/
+  798  ls
+  799  cd results/
+  800  ls
+  801  mkdir wp_0.9
+  802  cd wp_0.9/
+  803  ls
+  804  for i in 0 1 2 3 4 5 6 7 8; do mkdir t$i; done
+  805  ls
+  806  for i in 0 1 2 3 4 5 6 7 8; scp arrhenius:/home/vinicius/HHCl_NEWW/collisions/wp_0.9/collision_wp0.9_t$i/*.dat t$i/; done
+  807  ls
+  808  ls t0/
+  809  for i in 0 1 2 3 4 5 6 7 8; scp arrhenius:/home/vinicius/HHCl_NEWW/collisions/wp_0.9/collision_wp0.9_t$i/*.dat t$i/; done
+  810  scp arrhenius:/home/vinicius/HHCl_NEWW/collisions/wp_0.9/collision_wp0.9_t0/re_fluxxout-15.0.dat t0/
+  811  for i in 0 1 2 3 4 5 6 7 8; scp arrhenius:/home/vinicius/HHCl_NEWW/collisions/wp_0.9/collision_wp0.9_t$i/*.dat t$i/; done
+  812  for i in 0 1 2 3 4 5 6 7 8; do scp arrhenius:/home/vinicius/HHCl_NEWW/collisions/wp_0.9/collision_wp0.9_t$i/*.dat t$i/; done
+  813  ls
+  814  for i in 0 1 2 3 4 5 6 7 8; do tail -1 t$i/re_fluxxout-15.0.dat >> prob_phase.dat; done
+  815  more prob_phase.dat 
+  816  emacs prob_phase.dat 
+  817  gnuplot
+  818  cd ../wp_0.5/
+  819  ls
+  820  mv totalprob.dat prob_phase.dat
+  821  gnuplot
+  822  gnuplot
+  823  ls
+  824  ps2pdf -dEPSCrop Delta.eps
+  825  evince Delta.pdf 
+  826  ps2pdf -dEPSCrop Delta.eps
+  827  evince Delta.pdf 
+  828  ls
+  829  ps2pdf -dEPSCrop Delta.eps
+  830  evince Delta.pdf 
+  831  cp Delta.* ../../../figs/
+  832  cd ../..
+  833  cd ..
+  834  evince HCl.pdf
+  835  emacs HCl.tex &
+  836  pdflatex HCl.tex 
+  837  ls
+  838  cd HHCl_NEWW/csqs/
+  839  ls
+  840  cd phase_analysis/
+  841  ls
+  842  cd wp0.9-0.1/
+  843  ls
+  844  more selected_initial_cond.dat
+  845  gnuplot 
+  846  cd ..
+  847  ls
+  848  mkdir wp0.5-0.5 wp0.5-0.5-DELTA
+  849  ls
+  850  cd wp0.5-0.5-DELTA
+  851  ls
+  852  for i in 0 1 2 3 4 5 6 7 8; do mkdir t$i; done
+  853  ls
+  854  for i in 0 1 2 3 4 5 6 7 8; do scp arrhenius:/home/vinicius/HHCl_NEWW/collisions/wp_0.5-DELTA/collision_wp0.5_t$i/*.dat t$i; done
+  855  ls
+  856  for i in 0 1 2 3 4 5 6 7 8; do tail -1 t$i/re_fluxxout-15.0.dat >> prob_phase.dat; done
+  857  emacs prob_phase.dat&
+  858  bg
+  859  ls
+  860  cd ..
+  861  ls
+  862  mv wp0.5-0.5-DELTA ../../collisions/results/wp_0.5-DELTA
+  863  cd ../../collisions/results/wp_0.5-DELTA
+  864  lw
+  865  ls
+  866  cd ..
+  867  ls
+  868  cd wp_0.5-DELTA
+  869  ls
+  870  more ../wp_0.5/prob_phase.dat 
+  871  emacs prob_phase.dat &
+  872  gnuplot
+  873  cd ..
+  874  ls
+  875  mkdir wp_0.1
+  876  cd wp_0.1/
+  877  ls
+  878  for i in 0 1 2 3 4 5 6 7 8; do mkdir t$i; done
+  879  for i in 0 1 2 3 4 5 6 7 8; do scp arrhenius:/home/vinicius/HHCl_NEWW/collisions/wp_0.1/collision_wp0.1_t$i/*.dat t$i; done
+  880  for i in 0 1 2 3 4 5 6 7 8; do tail -1 t$i/re_fluxxout-15.0.dat >> prob_phase.dat; done
+  881  ls
+  882  cat ../../../csqs/phase_analysis/wp0.1-0.9/selected_initial_cond.dat 
+  883  emacs prob_phase.dat &
+  884  gnuplot
+  885  cd .
+  886  cd ..
+  887  ls
+  888  cp wp_0.1/prob_phase.dat prob_phase_0.1.dat
+  889  cp wp_0.25/prob_phase.dat prob_phase_0.25.dat
+  890  cp wp_0.5/prob_phase.dat prob_phase_0.5.dat
+  891  cp wp_0.75/prob_phase.dat prob_phase_0.75.dat
+  892  cp wp_0.9/prob_phase.dat prob_phase_0.9.dat
+  893  ls
+  894  for i in 0.1 0.25 0.5 0.75 0.9; do cat prob_phase_$i.dat | awk '{printf $i" "$1" "$2"\n"}' >> Prob_a0_phi.dat
+  895  for i in 0.1 0.25 0.5 0.75 0.9; do cat prob_phase_$i.dat | awk '{printf $i" "$1" "$2"\n"}' >> Prob_a0_phi.dat; done
+  896  emacs Prob_a0_phi.dat &
+  897  rm Prob_a0_phi.dat 
+  898  for i in 0.1 0.25 0.5 0.75 0.9; do cat prob_phase_$i.dat | awk '{printf $i" "$1" "$2"\n"}' >> Prob_a0_phi.dat; echo " " >> Prob_a0_phi.dat; done
+  899  more Prob_a0_phi.dat 
+  900  cat prob_phase_0.1.dat | awk '{printf 0.1" "$1" "$2"\n"}' 
+  901  for i in 0.1 0.25 0.5 0.75 0.9; do cat prob_phase_$i.dat | awk '{printf "$i "$1" "$2"\n"}' >> Prob_a0_phi.dat; echo " " >> Prob_a0_phi.dat; done
+  902  rm Prob_a0_phi.dat 
+  903  for i in 0.1 0.25 0.5 0.75 0.9; do cat prob_phase_$i.dat | awk '{printf "$i "$1" "$2"\n"}' >> Prob_a0_phi.dat; echo " " >> Prob_a0_phi.dat; done
+  904  more Prob_a0_phi.dat 
+  905  for i in 0.1 0.25 0.5 0.75 0.9; do cat prob_phase_$i.dat | awk "{printf $i" "\$1" "\$2"\n"}" >> Prob_a0_phi.dat; echo " " >> Prob_a0_phi.dat; done
+  906  for i in 0.1 0.25 0.5 0.75 0.9; do cat prob_phase_$i.dat | awk "{printf $i " "\$1" "\$2"\n"}" >> Prob_a0_phi.dat; echo " " >> Prob_a0_phi.dat; done
+  907  for i in 0.1 0.25 0.5 0.75 0.9; do cat prob_phase_$i.dat | awk "{printf $i;" "\$1" "\$2"\n"}" >> Prob_a0_phi.dat; echo " " >> Prob_a0_phi.dat; done
+  908  for i in 0.1 0.25 0.5 0.75 0.9; do cat prob_phase_$i.dat | awk -v a=$i '{printf "$a "$1" "$2"\n"}' >> Prob_a0_phi.dat; echo " " >> Prob_a0_phi.dat; done
+  909  rm Prob_a0_phi.dat 
+  910  for i in 0.1 0.25 0.5 0.75 0.9; do cat prob_phase_$i.dat | awk -v a=$i '{printf "$a "$1" "$2"\n"}' >> Prob_a0_phi.dat; echo " " >> Prob_a0_phi.dat; done
+  911  more Prob_a0_phi.dat 
+  912  for i in 0.1 0.25 0.5 0.75 0.9; do cat prob_phase_$i.dat | awk -v a="$i" '{printf $a" "$1" "$2"\n"}' >> Prob_a0_phi.dat; echo " " >> Prob_a0_phi.dat; done
+  913  rm Prob_a0_phi.dat 
+  914  for i in 0.1 0.25 0.5 0.75 0.9; do cat prob_phase_$i.dat | awk -v a="$i" '{printf $a" "$1" "$2"\n"}' >> Prob_a0_phi.dat; echo " " >> Prob_a0_phi.dat; done
+  915  more Prob_a0_phi.dat 
+  916  for i in 0.1 0.25 0.5 0.75 0.9; do cat prob_phase_$i.dat | awk -v a="$i" '{printf a" "$1" "$2"\n"}' >> Prob_a0_phi.dat; echo " " >> Prob_a0_phi.dat; done
+  917  tail Prob_a0_phi.dat 
+  918  rm Prob_a0_phi.dat 
+  919  for i in 0.1 0.25 0.5 0.75 0.9; do cat prob_phase_$i.dat | awk -v a="$i" '{printf a" "$1" "$2"\n"}' >> Prob_a0_phi.dat; echo " " >> Prob_a0_phi.dat; done
+  920  more Prob_a0_phi.dat 
+  921  emacs Prob_a0_phi.dat 
+  922  emacs Prob_a0_phi.dat &
+  923  cp Prob_a0_phi.dat approx_Prob_a0_phi.dat
+  924  emacs Prob_a0_phi.dat &
+  925  bg
+  926  gnuplot
+  927  more Prob_a0_phi.dat
+  928  ls
+  929  evince Prob_a0_phi.eps 
+  930  ps2pdf -dEPSCrop Prob_a0_phi.eps
+  931  evince Prob_a0_phi.pdf 
+  932  cp Prob_a0_phi.eps ../../figs/
+  933  cp Prob_a0_phi.pdf ../../figs/
+  934  gnuplot
+  935  ssh arrhenius 
+  936  cd HHCl_NEWW/csqs/phase_analysis/
+  937  s
+  938  ls
+  939  cd wp0.1-0.9
+  940  ls
+  941  more PHASE.out 
+  942  ls
+  943  head eigvc_1625.dat  eigvc_3267.dat  eigvc_4909.dat  eigvc_6551.dat     ReIm_1632.dat  ReIm_3274.dat  ReIm_4916.dat  wf_0.1-t0.dat
+  944  ls
+  945  head wf_0.1-t0.dat
+  946  cd ..
+  947  ls
+  948  cd programming/
+  949  ls
+  950  mkdir cross_deriv
+  951  cd cross_deriv/
+  952  ls
+  953  emacs cross.c &
+  954  gcc -o cross cross.c -lm
+  955  ./cross 
+  956  gcc -o cross cross.c -lm
+  957  ./cross 
+  958  gcc -o cross cross.c -lm
+  959  ./cross 
+  960  gcc -o cross cross.c -lm
+  961  ./cross 
+  962  gcc -o cross cross.c -lm
+  963  ./cross 
+  964  gcc -o cross cross.c -lm
+  965  ./cross 
+  966  gcc -o cross cross.c -lm
+  967  ./cross 
+  968  gcc -o cross cross.c -lm
+  969  ./cross 
+  970  gcc -o cross cross.c -lm
+  971  ./cross 
+  972  gcc -o cross cross.c -lm
+  973  ./cross 
+  974  gcc -o cross cross.c -lm
+  975  ./cross 
+  976  ls
+  977  cd sweden_jobs/
+  978  ls
+  979  cd Raman_CS2/
+  980  ls
+  981  cd rovib
+  982  ls
+  983  emacs potgs.dat
+  984  cd programming/cross_deriv/
+  985  ls
+  986  emacs cross.c &
+  987  gcc -o cross cross.c -lm
+  988  ./cross 
+  989  gcc -o cross cross.c -lm
+  990  ./cross 
+  991  gcc -o cross cross.c -lm
+  992  ./cross 
+  993  gcc -o cross cross.c -lm
+  994  ./cross 
+  995  gcc -o cross cross.c -lm
+  996  ./cross 
+  997  gcc -o cross cross.c -lm
+  998  ./cross 
+  999  gcc -o cross cross.c -lm
+ 1000  ./cross 
+ 1001  ls
+ 1002  cp ~/studies/quantumchem/template.tex crossnum.tex
+ 1003  emacs crossnum.tex &
+ 1004  pdflatex crossnum.tex 
+ 1005  evince crossnum.pdf &
+ 1006  pdflatex crossnum.tex 
+ 1007  pdflatex crossnum.tex
+ 1008  man apt-get
+ 1009  apt-get help
+ 1010  ls
+ 1011  cd ..
+ 1012  ls
+ 1013  cd ..
+ 1014  ls
+ 1015  cd eSPec_v0.6/
+ 1016  ls
+ 1017  cd ..
+ 1018  ls
+ 1019  cd eSPec_v0.6/
+ 1020  ls
+ 1021  emacs bugs_e_erros.log]
+ 1022  emacs bugs_e_erros.log
+ 1023  cd ..
+ 1024  ls
+ 1025  comp eSPec_v0.6.tar.gz eSPec_v0.6
+ 1026  ls
+ 1027  cd written/eSPec_input/
+ 1028  ls
+ 1029  pdflatex input_espec.tex 
+ 1030  evince input_espec.pdf 
+ 1031  cd ..
+ 1032  ls
+ 1033  cd ..
+ 1034  cd eSPec_v0.6/
+ 1035  ls
+ 1036  cd ..
+ 1037  cd written/eSPec_input/
+ 1038  emacs input_espec.t
+ 1039  emacs input_espec.tex
+ 1040  cd ..
+ 1041  ls
+ 1042  cd written/eSPec_input/
+ 1043  ls
+ 1044  evince input_espec.
+ 1045  evince input_espec.pdf 
+ 1046  bg
+ 1047  ls
+ 1048  cd ..
+ 1049  ls
+ 1050  cd ..
+ 1051  ls
+ 1052  cd eSPec_v0.6/
+ 1053  cd ..
+ 1054  ls
+ 1055  cp -r eSPec_v0.6 eSPec_v0.7
+ 1056  cd eSPec_v0.7
+ 1057  ls
+ 1058  cd src/
+ 1059  ls
+ 1060  emacs espec.f&
+ 1061  emacs au2d.f
+ 1062  cp au2d.f au2dct.f
+ 1063  emacs au2dct.f 
+ 1064  bg
+ 1065  ls
+ 1066  cd ..
+ 1067  cd src/
+ 1068  cd ..
+ 1069  ls
+ 1070  cd eSPec_v0.6/
+ 1071  emacs bugs_e_erros.log
+ 1072  cd ..
+ 1073  ls
+ 1074  cd sweden_jobs/
+ 1075  ls
+ 1076  cd Raman_CS2/
+ 1077  ls
+ 1078  cd surface/
+ 1079  ls
+ 1080  cd gs/
+ 1081  ls
+ 1082  cd ..
+ 1083  ls
+ 1084  cd ..
+ 1085  ls
+ 1086  cd normalcoord/
+ 1087  ls
+ 1088  emacs inputs.sh &
+ 1089  ls
+ 1090  mkdir eric
+ 1091  cp inputs.sh eric/
+ 1092  cp Lmat.dat eric/
+ 1093  emacs massnorcord.c
+ 1094  bg
+ 1095  emacs norcord.c
+ 1096  emacs inputs.sh
+ 1097  bg
+ 1098  emacs minput.dat
+ 1099  bg
+ 1100  more Lmat.dat
+ 1101  ls
+ 1102  cd allinps2
+ 1103  ls
+ 1104  emacs inputs.sh
+ 1105  bg
+ 1106  more Lmat.dat 
+ 1107  ls
+ 1108  xmgrace stretch.pot 
+ 1109  ls
+ 1110  more gs_CS2.pot
+ 1111  ls
+ 1112  gnuplot gs_CS2.pot
+ 1113  xmgrace gs_CS2.pot
+ 1114  cp inputs.sh ../
+ 1115  cd ..
+ 1116  ls
+ 1117  cp allinps2/* eric/
+ 1118  cd eric/
+ 1119  ls
+ 1120  emacs inputs.sh
+ 1121  cd ..
+ 1122  ls
+ 1123  comp eric.tar.gz eric/
+ 1124  ls
+ 1125  emacs lol
+ 1126  gnuploy
+ 1127  gnuplot
+ 1128  bc -l
+ 1129  ls
+ 1130  cd eSPec_v0.7/
+ 1131  ls
+ 1132  cd src/
+ 1133  ls
+ 1134  loadifort 
+ 1135  ifort -o check test_2dct.f au2dct.f
+ 1136  ./check 
+ 1137  emacs au2dct.f &
+ 1138  emacs test_2dct.f &
+ 1139  ifort -o check test_2dct.f au2dct.f
+ 1140  ./check 
+ 1141  ifort -o check test_2dct.f au2dct.f
+ 1142  ./check 
+ 1143  ifort -o check test_2dct.f au2dct.f
+ 1144  ./check 
+ 1145  ./check > out 
+ 1146  emacs out 
+ 1147  ifort -o check test_2dct.f au2dct.f
+ 1148  ./check
+ 1149  ifort -o check test_2dct.f au2dct.f
+ 1150  ./check
+ 1151  ./check > out
+ 1152  emacs out &
+ 1153  ifort -o check test_2dct.f au2dct.f
+ 1154  ./check > out
+ 1155  emacs out &
+ 1156  ifort -o check test_2dct.f au2dct.f
+ 1157  ./check > out2
+ 1158  emacs out2 
+ 1159  ifort -o check test_2dct.f au2dct.f
+ 1160  ./check > out2
+ 1161  emacs out2 
+ 1162  ifort -o check test_2dct.f au2dct.f
+ 1163  ./check > out2
+ 1164  emacs out2 
+ 1165  ifort -o check test_2dct.f au2dct.f
+ 1166  ./check > out2
+ 1167  emacs out2 
+ 1168  ifort -o check test_2dct.f au2dct.f
+ 1169  ./check > out2
+ 1170  emacs out2 
+ 1171  ifort -o check test_2dct.f au2dct.f
+ 1172  ./check > out2
+ 1173  emacs out2 
+ 1174  ifort -o check test_2dct.f au2dct.f
+ 1175  ./check > out2
+ 1176  emacs out2 
+ 1177  ifort -o check test_2dct.f au2dct.f
+ 1178  ./check > out2
+ 1179  emacs out2 
+ 1180  ifort -o check test_2dct.f au2dct.f
+ 1181  ./check > out2
+ 1182  emacs out2 
+ 1183  ifort -o check test_2dct.f au2dct.f
+ 1184  ./check > out2
+ 1185  emacs out2 &
+ 1186  ifort -o check test_2dct.f au2dct.f
+ 1187  ./check > out2
+ 1188  emacs out2 &
+ 1189  ifort -o check test_2dct.f au2dct.f
+ 1190  ./check > out3
+ 1191  emacs out3
+ 1192  ifort -o check test_2dct.f au2dct.f
+ 1193  ./check > out3
+ 1194  emacs out3
+ 1195  ifort -o check test_2dct.f au2dct.f
+ 1196  ./check > out3
+ 1197  emacs out3
+ 1198  ifort -o check test_2dct.f au2dct.f
+ 1199  ./check > out3
+ 1200  emacs out3
+ 1201  bg
+ 1202  emacs fort.1 &
+ 1203  emacs fort.2 &
+ 1204  ifort -o check test_2dct.f au2dct.f
+ 1205  emacs out3&
+ 1206  emacs fort.1
+ 1207  bg
+ 1208  emacsd fort.2
+ 1209  emacs fort.2
+ 1210  ifort -o check test_2dct.f au2dct.f
+ 1211  ./check > out3
+ 1212  emacs fort.1 &
+ 1213  ifort -o check test_2dct.f au2dct.f
+ 1214  ./check > out3
+ 1215  emacs fort.1 &
+ 1216  ifort -o check test_2dct.f au2dct.f
+ 1217  ./check > out3
+ 1218  emacs fort.1 &
+ 1219  ifort -o check test_2dct.f au2dct.f
+ 1220  ./check > out3
+ 1221  emacs fort.1 &
+ 1222  ifort -o check test_2dct.f au2dct.f
+ 1223  ./check > out3
+ 1224  emacs fort.1
+ 1225  ifort -o check test_2dct.f au2dct.f
+ 1226  ./check > out3
+ 1227  emacs fort.1
+ 1228  bg
+ 1229  pwd
+ 1230  ifort -o check test_2dct.f au2dct.f
+ 1231  ./check > out3
+ 1232  ifort -o check test_2dct.f au2dct.f
+ 1233  ./check > out3
+ 1234  emacs fort.2 &
+ 1235  emacs fort.1 &
+ 1236  cd ..
+ 1237  cd programming/
+ 1238  ls
+ 1239  cd cross_deriv/
+ 1240  ls
+ 1241  gcc -o cross cross.c -lm
+ 1242  emacs cross.c &
+ 1243  gcc -o cross cross.c -lm
+ 1244  ./cross 
+ 1245  gcc -o cross cross.c -lm
+ 1246  ./cross 
+ 1247  gcc -o cross cross.c -lm
+ 1248  ./cross 
+ 1249  ./cross > lokkk
+ 1250  emacs lokkk 
+ 1251  gcc -o cross cross.c -lm
+ 1252  ./cross > lokkk
+ 1253  emacs lokkk 
+ 1254  gcc -o cross cross.c -lm
+ 1255  ./cross > lokkk
+ 1256  emacs lokkk 
+ 1257  gcc -o cross cross.c -lm
+ 1258  ./cross > lokkk
+ 1259  emacs lokkk 
+ 1260  gcc -o cross cross.c -lm
+ 1261  ./cross > lokkk
+ 1262  emacs lokkk &
+ 1263  gcc -o cross cross.c -lm
+ 1264  ./cross > lokkk
+ 1265  emacs lokkk 
+ 1266  gcc -o cross cross.c -lm
+ 1267  ./cross > lokkk
+ 1268  emacs lokkk 
+ 1269  gcc -o cross cross.c -lm
+ 1270  ./cross > lokkk
+ 1271  emacs derivcompar.dat &
+ 1272  gcc -o cross cross.c -lm
+ 1273  ./cross > lokkk
+ 1274  emacs derivcompar.dat 
+ 1275  gcc -o cross cross.c -lm
+ 1276  ./cross > lokkk
+ 1277  emacs derivcompar.dat &
+ 1278  diff /home/vinicius/eSPec_v0.7/src/fort.1 derivcompar.dat 
+ 1279  emacs compare.sh
+ 1280  diff /home/vinicius/eSPec_v0.7/src/fort.1 derivcompar.dat > compare
+ 1281  emacs compare 
+ 1282  emacs compare.sh
+ 1283  bg
+ 1284  chmod +x compare.sh
+ 1285  ./compare.sh 
+ 1286  ls
+ 1287  emacs diff-fxx.log
+ 1288  more fort_fxx.dat
+ 1289  ls
+ 1290  diff fort_fxx.dat cross_fxx.dat
+ 1291  ./compare.sh 
+ 1292  emacs diff-fxx.log
+ 1293  emacs fort_fxx.dat &
+ 1294  emacs cross_fxx.dat &
+ 1295  ./compare.sh 
+ 1296  emacs diff-fxx.log
+ 1297  bg
+ 1298  ./compare.sh 
+ 1299  emacs diff-fxx.log
+ 1300  ./compare.sh 
+ 1301  emacs diff-fxx.log
+ 1302  ls
+ 1303  diff cross_fxy.dat fort_fxy.dat
+ 1304  diff cross_fxy.dat fort_fxy.dat | head
+ 1305  diff cross_fxx.dat fort_fxx.dat | head
+ 1306  diff cross_fyy.dat fort_fyy.dat | head
+ 1307  ls
+ 1308  more differences.dat
+ 1309  diff differences.dat /home/vinicius/eSPec_v0.7/src/fort.2
+ 1310  diff differences.dat /home/vinicius/eSPec_v0.7/src/fort.2 | head
+ 1311  diff differences.dat /home/vinicius/eSPec_v0.7/src/fort.2
+ 1312  diff differences.dat /home/vinicius/eSPec_v0.7/src/fort.2 | head
+ 1313  diff -y differences.dat /home/vinicius/eSPec_v0.7/src/fort.2 | head
+ 1314  more differences.dat 
+ 1315  diff -y differences.dat /home/vinicius/eSPec_v0.7/src/fort.2
+ 1316  ./compare.sh 
+ 1317  ls
+ 1318  emacs diff-dfxx.log
+ 1319  emacs diff-dfyy.log
+ 1320  emacs differences.dat &
+ 1321  emacs derivcompar.dat &
+ 1322  ls
+ 1323  emacs cross.c&
+ 1324  ls
+ 1325  cd eSPec_v0.7/
+ 1326  ls
+ 1327  cd src/
+ 1328  ls
+ 1329  emacs espec.f
+ 1330  ls
+ 1331  loadifort 
+ 1332  ls
+ 1333  ifort -o check test_2dct.f au2dct.f
+ 1334  emacs test_2dct.f &
+ 1335  ifort -o check test_2dct.f au2dct.f
+ 1336  ./check 
+ 1337  emacs fort.3
+ 1338  ifort -o check test_2dct.f au2dct.f
+ 1339  emacs fort.3
+ 1340  ./check 
+ 1341  ifort -o check test_2dct.f au2dct.f -fast -traceback
+ 1342  ./check 
+ 1343  ifort -o check test_2dct.f au2dct.f -fast -traceback
+ 1344  ./check 
+ 1345  ifort -o check test_2dct.f au2dct.f -fast -traceback
+ 1346  ./check 
+ 1347  ifort -o check test_2dct.f au2dct.f -fast -traceback
+ 1348  ./check 
+ 1349  ifort -o check test_2dct.f au2dct.f -fast -traceback
+ 1350  ./check 
+ 1351  ifort -o check test_2dct.f au2dct.f -fast -traceback
+ 1352  ./check 
+ 1353  ifort -o check test_2dct.f au2dct.f -fast -traceback
+ 1354  ./check 
+ 1355  ifort -o check test_2dct.f au2dct.f -fast -traceback
+ 1356  ./check 
+ 1357  ifort -o check test_2dct.f au2dct.f -fast -traceback
+ 1358  ./check 
+ 1359  ifort -o check test_2dct.f au2dct.f -fast -traceback
+ 1360  ./check 
+ 1361  ifort -o check test_2dct.f au2dct.f -fast -traceback
+ 1362  ./check 
+ 1363  ifort -o check test_2dct.f au2dct.f -fast -traceback
+ 1364  ./check 
+ 1365  emacs fort.3 
+ 1366  ifort -o check test_2dct.f au2dct.f -fast -traceback
+ 1367  ./check 
+ 1368  ifort -o check test_2dct.f au2dct.f -fast -traceback
+ 1369  ./check 
+ 1370  ./check > outas
+ 1371  emacs outas 
+ 1372  ifort -o check test_2dct.f au2dct.f -fast -traceback
+ 1373  ./check > outas
+ 1374  emacs outas 
+ 1375  emacs fort.3 
+ 1376  ifort -o check test_2dct.f au2dct.f -fast -traceback
+ 1377  ./check > outas
+ 1378  emacs outas 
+ 1379  emacs au2dct.f&
+ 1380  emacs mtrxdiag.f&
+ 1381  emacs test_mtrxdiag.f &
+ 1382  ifort -o tmatrix test_mtrxdiag.f
+ 1383  ./tmatrix 
+ 1384  emacs fort.1 
+ 1385  ifort -o tmatrix test_mtrxdiag.f
+ 1386  ./tmatrix 
+ 1387  emacs fort.1 
+ 1388  ifort -o tmatrix test_mtrxdiag.f
+ 1389  ./tmatrix 
+ 1390  emacs fort.1 
+ 1391  ifort -o tmatrix test_mtrxdiag.f
+ 1392  ./tmatrix 
+ 1393  emacs fort.1 
+ 1394  ifort -o tmatrix test_mtrxdiag.f
+ 1395  ./tmatrix 
+ 1396  emacs fort.1 
+ 1397  mkdir WFME
+ 1398  cd WFME/
+ 1399  ls
+ 1400  cp ~/studies/quantumchem/template.tex .
+ 1401  ls
+ 1402  emacs template.tex &
+ 1403  emacs ~/HHCl_NEWW/HCl.tex
+ 1404  emacs ~/HHCl_NEWW/paper/hcl_laser.tex
+ 1405  cp template.tex resumo.tex
+ 1406  emacs resumo.tex &
+ 1407  cd eSPec_v0.7/
+ 1408  ls
+ 1409  cd src/
+ 1410  ls
+ 1411  emacs mtrxdiag.f &
+ 1412  emacs test_mtrxdiag.f&
+ 1413  emacs espec.f&
+ 1414  emacs rdpt.f
+ 1415  emacs test_2dct.f&
+ 1416  emacs au2dct.f&
+ 1417  cp  test_2dct.f matrixtest_2dct.f
+ 1418  emacs matrixtest_2dct.f
+ 1419  gcc -o checkmatrix matrixtest_2dct.f au2dct.f
+ 1420  ifort -o checkmatrix matrixtest_2dct.f au2dct.f
+ 1421  loadifort 
+ 1422  ifort -o checkmatrix matrixtest_2dct.f au2dct.f
+ 1423  ./checkmatrix 
+ 1424  emacs fort.1 
+ 1425  ifort -o checkmatrix matrixtest_2dct.f au2dct.f
+ 1426  ./checkmatrix 
+ 1427  emacs fort.1 
+ 1428  ifort -o checkmatrix matrixtest_2dct.f au2dct.f
+ 1429  ./checkmatrix 
+ 1430  emacs fort.1 
+ 1431  emacs fort.1 &
+ 1432  mv fort.1 positions_matrix
+ 1433  emacs positions_matrix &
+ 1434  ifort -o tmatrix test_mtrxdiag.f
+ 1435  ./tmatrix 
+ 1436  ifort -o tmatrix test_mtrxdiag.f
+ 1437  ./tmatrix 
+ 1438  ifort -o tmatrix test_mtrxdiag.f
+ 1439  ./tmatrix 
+ 1440  ifort -o tmatrix test_mtrxdiag.f
+ 1441  ./tmatrix 
+ 1442  emacs fort.1 
+ 1443  ifort -o tmatrix test_mtrxdiag.f
+ 1444  ./tmatrix 
+ 1445  ./tmatrix > outr
+ 1446  emacs outr &
+ 1447  emacs espec.f
+ 1448  ifort -o tmatrix test_mtrxdiag.f
+ 1449  ./tmatrix > outr
+ 1450  emacs outr &
+ 1451  bg
+ 1452  emacs fort.1 &
+ 1453  more fort.1
+ 1454  ifort -o tmatrix test_mtrxdiag.f
+ 1455  ./tmatrix > outr
+ 1456  ifort -o tmatrix test_mtrxdiag.f
+ 1457  ./tmatrix > outr
+ 1458  emacs fort.1 
+ 1459  ifort -o tmatrix test_mtrxdiag.f
+ 1460  ./tmatrix > outr
+ 1461  ifort -o tmatrix test_mtrxdiag.f
+ 1462  ./tmatrix
+ 1463  ./tmatrix > outr
+ 1464  emacs outr 
+ 1465  ifort -o tmatrix test_mtrxdiag.f
+ 1466  ./tmatrix > outr
+ 1467  emacs outr 
+ 1468  ls
+ 1469  cd eSPec_v0.
+ 1470  cd eSPec_v0.7/
+ 1471  ls
+ 1472  cd src/
+ 1473  ls
+ 1474  emacs test_mtrxdiag.f&
+ 1475  loadifort 
+ 1476  icc
+ 1477  emacs au2dct.f
+ 1478  emacs au2dct.f &
+ 1479  bg
+ 1480  emacs fort.1 
+ 1481  ./check
+ 1482  ./check > outy
+ 1483  emaccs fort.1
+ 1484  emacs fort.1
+ 1485  emacs test_2dct.f &
+ 1486  ls
+ 1487  ./check
+ 1488  ./checkmatrix 
+ 1489  emacs fort.1 
+ 1490  emacs test_2dct.f
+ 1491  emacs test_mtrxdiag.f
+ 1492  ls
+ 1493  history > histo

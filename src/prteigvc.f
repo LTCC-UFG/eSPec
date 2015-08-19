@@ -71,7 +71,8 @@ c
             XP(2) = XI(2) + (K - 1)*SH(2)
             DO J=1,NP(1),1
                XP(1) = XI(1) + (J - 1)*SH(1)
-               NC = J + (K - ONE)*NP(1) + (L - ONE)*NP(1)*NP(2)
+               NC = J + (K - ONE)*NP(1) + (L - ONE)*NP(1)*NP(2) 
+c
                WRITE(MC,1012)(XP(I), I=ND,1,-1),
      &              (EVT(NC, I), I=1,NIS,1)
             ENDDO

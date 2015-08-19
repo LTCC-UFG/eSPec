@@ -64,7 +64,7 @@ c         IF(T.GT.848.595)E0=0.0D0
 c [1] T. Joseph and J. Mans, Mol. Phys., 1986, Vol. 58, No. 6, 1149-1169
          EF = E0*EXP(-4.0D+0*0.693147181D+0*(T - T0)
      &        *(T - T0)/(TP*TP))*COS(OMG*T*FATT + SNI) ![1] 
-         EF = EF*FATE ! V/cm = J/(C*cm) -> a.u./(C*cm)
+         EF = EF*FATE ! V/cm = J/(C*cm) -> a.u./D
       ELSEIF(EFC(1:6).EQ.'.GGAUS')THEN
 c         write(*,*)'T,E0,OMG,T0,TP,KL',T,E0,OMG,T0,TP,KL
 c         read(*,*)
@@ -75,7 +75,7 @@ c         read(*,*)
       ELSEIF(EFC(1:5).EQ.'.SIN2')THEN
          EF = E0*COS(PI*(T - TD)/TP)*COS(PI*(T - TD)/TP)
      &        *COS(OMG*(T - TD)*FATT + SNI)
-         EF = EF*FATE ! V/cm = J/(C*cm) -> a.u./(C*cm)
+         EF = EF*FATE ! V/cm = J/(C*cm) -> a.u./(D)
       ELSEIF(EFC(1:5).EQ.'.NONE' .OR. EFC(1:5).EQ.'.NULL')THEN
          EF = ZERO
       ELSE

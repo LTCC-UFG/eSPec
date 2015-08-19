@@ -1,4 +1,4 @@
-      PROGRAM eSPec
+        PROGRAM eSPec
       IMPLICIT NONE
 c     **
 *     ..
@@ -14,8 +14,8 @@ c     **
 *     =======
 *     Freddy Fernandes Guimaraes - email:freddy@ufmg.br
 *     Amary Cesar Ferreira - email:yrra@zeus.qui.ufmg.br
+*     Vinicius Vaz da Cruz - email: viniciusvcruz@gmail.com
 *     Viviane Costa Felicissimo - 
-*
 *     ..
 *     Historic
 *     ========
@@ -25,11 +25,14 @@ c     **
 *     (20/06/2003) Inclusion of the time independent spectrum calculation 
 *     by Freddy.
 *     (30/06/2003) Inclusion of pulse control by Freddy.
-*     
+*     (-/09/2014) Some bugs fixed in version 07 by Vinicius and Freddy
+*     and inclusion of cross term hamiltonian
+* 
 c     **
 c     ** Scalar arguments
       LOGICAL       ABSORB, CHANGE, PRTEGVC, PRTPOT, PRTVEFF, PRTEIGVC2
-      LOGICAL       PRTDIPL, PRTPULS, LHWHM, WARN, FSTOP, SHIFTP
+      LOGICAL       PRTREGION,PRTONLYREIM
+      LOGICAL       PRTDIPL, PRTPULS, LHWHM, WARN, FSTOP, SHIFTP,PRTABS
       CHARACTER*1   DR
       CHARACTER*2   CHAUX
       CHARACTER*3   TDI
@@ -40,7 +43,7 @@ c     ** Scalar arguments
       CHARACTER*16  TPABSOR
       CHARACTER*25  POTFILE, POTFILEF, FILEAUX, DMFILE, POTCH, POTCHF
       CHARACTER*172 TITLE
-      INTEGER       I, IIL, IIU, IFL, IFU, INFO, J, K, MC, NDAUX
+      INTEGER       I, IIL, IIU, IFL, IFU, INFO, J, K, MC, NDAUX,NREG
       INTEGER       MF, MP, MPR, MPI, NC, NFS, NSEED, NIS, ND, NDT
       INTEGER       NT, NREORT, NSHOT, NPR, MAXINT, KP, KL, KLX, ISC
       REAL*8        ABSTOL, CS, DE, DT, DTF, T, TI, TF, TOL, SC, WP
@@ -71,12 +74,13 @@ c     ** Array arguments
       INTEGER       IWK(MXDCT),  NP(MXDM)
       REAL*8        CSTI(MXCST), CSTF(MXCST), CSTFB(MXCST), CSTDM(MXCST)  
       REAL*8        EIGVL(LMTREORT), PL(MXDM), SH(MXDM), SHM(MXDM)
-      REAL*8        SM(MXDM), SMF(MXDM), U1(MXDCT), V1(MXDCT)
+      REAL*8        SM(MXDM), SMF(MXDM), SHF(MXDM),U1(MXDCT), V1(MXDCT)
       REAL*8        VPOT(MXDCT), VABC(MXDCT), DM(MXDCT), XI(MXDM)
       REAL*8        XF(MXDM), XP(MXDM), WK1(MXDCT), WK2(MXDCT)
       REAL*8        WK3(MXDCT), WK4(MXDCT), AL(MXDM), AR(MXDM)
       REAL*8        VOI(MXDM), X0(MXDM), rK(MXDM), rA(MXDM), VAR(MXDCT)
       REAL*8        EIGVC(MXDCT,LMTREORT), LANCZ(MXDCT,LMTREORT)
+      REAL*8        RANGE(5,7)
 c      REAL*8        WMTX(MXDCT,10)
 c     **
 c     ** External functions 
@@ -112,6 +116,8 @@ c     .. Starting default logical values
       WARN      = .FALSE.
       FSTOP     = .TRUE.
       SHIFTP    = .TRUE.
+      PRTREGION = .FALSE.
+      PRTONLYREIM = .FALSE.
 c     .. 
 c     .. Starting character default values
       INPUT    = 'input.spc   ' 
@@ -136,7 +142,7 @@ c     .. Starting scalar default values
       IIU = ZERO
       IFL = ZERO
       IFU = ZERO
-      MAXINT = 200
+      MAXINT = 300
       MF     = +1.3D+1
       MP     = +1.0D+1
       NIS    = ONE
@@ -197,6 +203,7 @@ c      DATA ((EIGVC(I,J),I=1,MXDCT,1),J=1,LMTREORT,1) / MXAUX * 0.0E+0 /
       DATA SHM / MXDM* ZERO /
       DATA SM  / MXDM* ZERO /
       DATA SMF / MXDM* ONE /
+      DATA SHF / MXDM* ONE /
       DATA U1  / MXDCT* ZERO /
       DATA V1  / MXDCT* ZERO /
       DATA VABC / MXDCT* ZERO /
@@ -222,7 +229,8 @@ c     .. Getting input parameters
      &     NP, ABSTOL, DT, DTF, TI, TF, TOL, WP, E0, TP, TD, T0, SNI, 
      &     OMG, CHWHM, DE, E1I, ADE, GAMMA, OMEGA, DMX, TPX, T0X, AA, 
      &     QC, DELQ, CSTI, CSTF, CSTFB, CSTDM, SM, SMF, XI, XF, AL, AR,
-     &     rK, rA, X0, VOI, VAR)
+     &     rK, rA, X0, VOI, VAR,SHF,PRTREGION,NREG,RANGE,PRTONLYREIM)
+C,PRTABS)
       WRITE(*,*)'Input parameters got.'
 c
       IIL = IIL + ONE
@@ -283,7 +291,15 @@ c
          WRITE(*,*)'    Using ',TDI(2:3),' formalism;' 
 c
          NC = ICHLENGTH(DIM, 0)
-         WRITE(*,*)'    Dimension = ',DIM(2:NC),';'
+         WRITE(*,'(A16,A4,A3)')'    Dimension = ',DIM(2:NC),'  ;'
+c
+         IF(DIM(1:5).EQ.'.2DCT')THEN
+            WRITE(*,'(A82)') "This calculation includes a cross term 
+     &derivative in the kinetic energy operator"
+            WRITE(*,*) " Cross term value ",SHF(3)
+            WRITE(*,*) " Cross term mass  ",SM(3)
+            WRITE(*,*)
+         ENDIF
 c
          NC = ICHLENGTH(TPCLC, 0)
          WRITE(*,1004)('R',I,NP(I), 
@@ -318,7 +334,7 @@ c
          WRITE(*,5001)('Reduced mass_',I,'=', SM(I),';',I=NDAUX,1,-1)
          IF(SMF(1).NE.ONE .OR. SMF(2).NE.ONE .OR. 
      &        SMF(3).NE.ONE)THEN
-            WRITE(*,5002)('Rescale mass factor_',I,'=', SMF(I),';',
+            WRITE(*,5002)('Rescaling mass factor_',I,'=', SMF(I),';',
      &           I=ND,1,-1)
          ENDIF
 c     
@@ -535,6 +551,15 @@ c
       ELSE
          WRITE(*,*)'    Print eigenvectors switch off;'
       ENDIF
+c
+      IF(PRTREGION)THEN
+         WRITE(*,*)'    Print only regions of the wavepacket'
+         DO I=1, NREG,1
+            WRITE(*,*) '    region ',I
+            WRITE(*,'(6ES15.7)') (RANGE(I,J),J=1,6,1)
+            WRITE(*,*)
+         ENDDO
+      ENDIF
 c     
       IF(PRTPOT)THEN
          WRITE(*,*)'    Print potential switch on;'
@@ -595,13 +620,14 @@ c     .. Calculate positions in a.u.
          XI(I) = XI(I)/A0A
          XF(I) = XF(I)/A0A
          SH(I) = SH(I)/A0A
+         write(*,*)'XI(I),XF(I)',XI(I),XF(I)
       ENDDO
       IF(POTCH(1:5).NE.'.FILE' .OR. POTCHF(1:5).NE.'.FILE' )THEN
          DO I=1,ND,1
 c            XI(I) = XI(I)/A0A
 c            XF(I) = XF(I)/A0A
 c            SH(I) = SH(I)/A0A
-            SHM(I) = ONE/(2.4D+1*SM(I)*SMF(I)*SH(I)*SH(I))
+            SHM(I) = SHF(I)/(2.4D+1*SM(I)*SMF(I)*SH(I)*SH(I))
             WRITE(*,1010)I,XI(I),I,XF(I),I,SH(I)
             IF(SH(I).GT.4.0D-2)THEN
                WRITE(*,*)'<<<>>> Step bigger than', 4.0D-2,
@@ -613,7 +639,10 @@ c            SH(I) = SH(I)/A0A
             ENDIF    
          ENDDO 
          IF(DIM(1:4).EQ.'.2DC')THEN
-            SHM(3) = ONE/(2.4D+1*SM(3)*SMF(3)*SH(1)*SH(2))
+            SHM(3) = SHF(3)/(2.4D+1*SM(3)*SMF(3)*SH(1)*SH(2))
+         ENDIF
+         IF(DIM(1:5).EQ.'.2DCT')THEN
+            SHM(3) = SHF(3)/(9.6D+1*SM(3)*SMF(3)*SH(1)*SH(2))
          ENDIF
       ENDIF
 c     ..
@@ -671,6 +700,8 @@ c     .. Getting initial potential;
                WRITE(*,1003)'Computing the initial wave packet...'
                DO I=1,ND,1
                   IF(RK(I).LT.ZERO)THEN
+CNEEDS MODIFICATION, EXPECTED VALUE FOR GAUSSIAN ENERGY WRONG <<<<<<<<<<<<<<<<<<< vinicius
+C ACTUALLY, THE PROGRAM READS THE ENERGY ASSOCIATED WITH THE PLANE WAVE WITH K0 in the gaussian wavepacket distribution << vinicius
                      RK(I) = -SQRT(-TWO*SM(I)*SMF(I)*RK(I))
                   ELSE
                      RK(I) =  SQRT(TWO*SM(I)*SMF(I)*RK(I))
@@ -748,6 +779,7 @@ c               write(*,*)'2 rk(1),rk(2)',rk(1),rk(2)
 c     
                WRITE(*,1003)'Computing the initial wave packet...'
                DO I=1,ND,1
+                  write(*,*)'xi(i),xf(i)',xi(i),xf(i)
                   IF(RK(I).LT.ZERO)THEN
                      RK(I) = -SQRT(-TWO*SM(I)*SMF(I)*RK(I))
                   ELSE
@@ -784,9 +816,11 @@ c     .. and print information concerning to the potential of input file
          WRITE(*,*)'""""""""""""""""""""""""""""""""""""""""""""'
          DO I=1,ND,1
             SH(I) = (XF(I) - XI(I))/(NP(I) - ONE)
-            SHM(I) = ONE/(2.4D+1*SM(I)*SMF(I)*SH(I)*SH(I))
+            SHM(I) = SHF(I)/(2.4D+1*SM(I)*SMF(I)*SH(I)*SH(I))
             WRITE(*,1010)I,XI(I),I,XF(I),I,SH(I)
+
             IF(SH(I).GT.4.0D-2)THEN
+
                WRITE(*,*)'<<<>>> Step bigger than', 4.0D-2,
      &              ' a.u. program will stop <<<>>>'
                IF(FSTOP) STOP
@@ -797,8 +831,11 @@ c     .. and print information concerning to the potential of input file
          ENDDO 
 c
          IF(DIM(1:4).EQ.'.2DC')THEN
-            SHM(3) = ONE/(2.4D+1*SM(3)*SMF(3)*SH(1)*SH(2))
-         ENDIF    
+            SHM(3) = SHF(3)/(2.4D+1*SM(3)*SMF(3)*SH(1)*SH(2))
+         ENDIF   
+         IF(DIM(1:5).EQ.'.2DCT')THEN
+            SHM(3) = SHF(3)/(9.6D+1*SM(3)*SMF(3)*SH(1)*SH(2))
+         ENDIF
 c
          IF(INIEIGVC(1:5).EQ.'.READ' .OR.
      &        INIEIGVC(1:4).EQ.'.GET')THEN
@@ -1038,7 +1075,7 @@ c
 c     .. Making spectrum 
          CALL SPECTRUMTI(IIL, IIU, IFL, IFU, MXDCT, NT, WK1, EIGVL, 
      &        EIGVC)
-c 
+
       ELSEIF(TDI(1:3).EQ.'.TD')THEN
 c     ........................... 
 c     .. Time-dependent formalism
@@ -1091,24 +1128,36 @@ c
      &              V1(1))
             ENDIF    
             WRITE(*,*)
-            WRITE(*,*)'Eigenvector B:'
-            WRITE(*,*)'""""""""""""""'
-            IF(INIEIGVC(1:5).EQ.'.GETR' .OR. 
-     &           INIEIGVC(1:6).EQ.'.READR')THEN
-               CALL PRTPT(TPDIAG, 6, ND, ZERO, NP, XP, XI, SH, U1(NT+1))
-            ELSE
-               CALL PRPT2(TPDIAG, 6, ND, ZERO, NP, XP, XI, SH, U1(NT+1), 
-     &              V1(NT+1))
-            ENDIF
+C     ??????????????????? Eigenvector B
+C     vinicius > i comented everything from 1 to 2
+C 1
+C            WRITE(*,*)'Eigenvector B:'
+C            WRITE(*,*)'""""""""""""""'
+C            IF(INIEIGVC(1:5).EQ.'.GETR' .OR. 
+C     &           INIEIGVC(1:6).EQ.'.READR')THEN
+C               CALL PRTPT(TPDIAG, 6, ND, ZERO, NP, XP, XI, SH, U1(NT+1))
+C            ELSE
+C               CALL PRPT2(TPDIAG, 6, ND, ZERO, NP, XP, XI, SH, U1(NT+1), 
+C     &              V1(NT+1))
+C            ENDIF
          ENDIF
 c     
          IF(ABSORB)THEN
             CALL ABSORBINGBC(DIM, TPABSOR, NT, NP, AL, AR, SH, XI, 
      &           XF, VOI, VABC, ALPHA)
 cccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-            write(*,*)'***********cond. absorvente'
+cccccccccccc
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCc
+cccccccccccccc Vinicius 18/10/2011
+            IF(PRTABS) THEN
+            write(*,*)'***********Absorbing Boundary Condition'
             CALL PRTPT(POTCHF, 6, ND, ZERO, NP, XP, XI, SH, VABC)
-            write(*,*)'***********cond. absorvente final'
+            write(*,*)'***********'
+            ENDIF
+cccccccccccccc Vinicius 18/10
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCcc
+
 c            read(*,*)
 cccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 cXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -1137,9 +1186,14 @@ c
             ENDIF
             CALL DIPLMMT(TPDIPL, DMFILE, NT, ND, CSTI, CSTF, CSTDM, 
      &           XI, XF, SH, DM)
+CCC
+CC          VINICIUS: calculates the transition dipole moments
+            CALL TRANSDIPOLE(IIL, IIU, IFL, IFU, MXDCT, NT, WK1, EIGVL, 
+     &           EIGVC,DM)
+CC
             WRITE(*,*)
             NC = NINT((XMIN - XI(1))/SH(1) + ONE)
-c            write(*,*)'nc',nc,e0,DM(NC),xmin
+c     write(*,*)'nc',nc,e0,DM(NC),xmin
             RABI = ABS(DM(NC))*SQRT(E0)*2.1132D-9*27.2114D0
             WRITE(*,*)'   Dipole moment =',ABS(DM(NC))
             WRITE(*,*)'   Rabi frequency =',RABI,' eV'
@@ -1345,7 +1399,8 @@ c               IF(TPCLC(1:12).EQ.'.PROPAGATION')GOTO 9999
      &              PRTCRL, TPABSOR, INFO, NC, MP, MPI, MPR, MXDCT, NT, 
      &              NSHOT, NPR, KP, NISPG, E0, T0,  TD, TP, OMG, SNI, 
      &              KL, DT, TI, TF, TOL, NP, ND, SH, SHM, U1, WK1, V1, 
-     &              WK2, XI, XP, XF, DM, VPOT, VABC, WK3, VAR, EIGVC)
+     &              WK2, XI, XP, XF, DM, VPOT, VABC, WK3, VAR, EIGVC,
+     &              PRTREGION,NREG,RANGE,PRTONLYREIM) 
                IF(INFO.NE.ZERO)THEN
                   WRITE(*,*)'<<<>>> Propagation operator error ',
      &                 '<<<>>>'
@@ -1575,13 +1630,13 @@ c     ..
       WRITE(*,*)'The eSPec program finished successfully!'
 c     ..
  1001 FORMAT(10X,'****************************************************')
- 1002 FORMAT(25X,'eSPec version 0.4 beta',//,14X,
+ 1002 FORMAT(25X,'eSPec version 0.7 beta',//,14X,
      &     'Principal author: ',/,17X,6X,
      &     'Freddy Fernandes Guimaraes.',/,14X,
      &     'Contributors:',/,17X, 
-     &     'Amary Cesar, Viviane Costa Felicissimo,',/,17X,
-     &     'Viktor Kimberg, Faris Gelmukhanov,',/,17X, 
-     &     'and Yasen Velkov.')
+     &     'Amary Cesar, Vinicius Vaz da Cruz,',/,17X,
+     &     'Viviane Costa Felicissimo, Viktor Kimberg, ',/,17X,
+     &     'Faris Gelmukhanov, and Yasen Velkov.') 
  1003 FORMAT(/,3X,A68)
  1004 FORMAT(1X,'    Number of points in the discretization:',
      &     1X,3(A1,I1,1X,'=',1X,I4,';',1X))

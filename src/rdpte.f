@@ -2,6 +2,9 @@ c     .. Read potential from file called INFILE
 c     =========================================
       SUBROUTINE RDPTE(INFILE, NT, ND, XI, XF, XMIN, V)
       IMPLICIT NONE
+C 
+C vinicius: this one reads real wavefunctions (V)
+C
 c     **
 c     ** Scalar arguments 
 cdel      LOGICAL
@@ -71,13 +74,17 @@ D         write(*,*)j,nt
          READ(69,*,END=999,ERR=999)(XF(I), I=ND,1,-1), V(J) 
          IF(V(J).LT.VAUX)THEN
             VAUX = V(J)
-            XMIN = XF(J)
+c     array xf cannot have possition bigger than 3
+c            XMIN = XF(J)
+            XMIN=0
          ENDIF 
       ENDDO 
       READ(69,*,END=999,ERR=999)(XF(I), I=ND,1,-1),V(NT)
       IF(V(NT).LT.VAUX)THEN
          VAUX = V(NT)
-         XMIN = XF(NT)
+c     array xf cannot have possition bigger than 3
+c         XMIN = XF(NT)
+         XMIN=0
       ENDIF
 c
 c      ORM = ECNORM(NT, V)

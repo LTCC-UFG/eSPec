@@ -28,6 +28,8 @@ c     ** External functions
       REAL*8        GET_GAUSS
 c      
       IF (DIM(1:3).EQ.'.1D' .AND. INIEIGVC(1:5).EQ.'.CALC') THEN
+         PRINT*, ">>>>> vinicius"
+         PRINT*, NP(1), X0(1), rK(1), rA(1)
          rNORM = ZERO    
          DO I = 1, NP(1), 1
             COORD = XI(1) + (I - 1)*SH(1) - X0(1)
@@ -42,7 +44,10 @@ c
 c     
             COAUX = rK(1)*COORD
             U(I) =  DCOS(COAUX)*GAUSS_T
-            V(I) = -DSIN(COAUX)*GAUSS_T
+c           I think the sign is wrong. 
+c            V(I) = -DSIN(COAUX)*GAUSS_T
+c
+            V(I) = DSIN(COAUX)*GAUSS_T
          ENDDO
 c           
       ELSEIF(DIM(1:3).EQ.'.2D' .AND. INIEIGVC(1:6).EQ.'.GETR2')THEN

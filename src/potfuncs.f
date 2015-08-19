@@ -116,7 +116,7 @@ c     pot1d=D*(1-exp(-B*(rij-r01)))**2
 c     &     +A*exp(-C*(rij-r02)**2)
          POT1D = CST(3)*(ONE - DEXP(-CST(4)*(RX - CST(1))))**2
      &        + CST(5)*DEXP(-CST(6)*(RX - CST(2))**2)
-      ELSEIF(POTCH(1:5).EQ.'.WELL')THEN
+      ELSEIF(POTCH(1:5).EQ.'.STEP')THEN
          IF(RX.GE.CST(1) .AND. RX.LE.CST(2))THEN
             POT1D = ZERO
          ELSE
@@ -414,7 +414,7 @@ c     .. three-dimensional harmonic oscillator
          POT3D = 5.0D-1*CST(2)*(RX - CST(1))**2 
      &        + 5.0D-1*CST(4)*(RY - CST(3))**2 
      &        + 5.0D-1*CST(6)*(RZ - CST(5))**2
-      ELSEIF(POTCH(1:5).EQ.'.WELL')THEN
+      ELSEIF(POTCH(1:5).EQ.'.STEP')THEN
          IF(RX.GE.CST(1) .AND. RX.LE.CST(2) .AND.
      &        RY.GE.CST(3) .AND. RY.LE.CST(4) .AND.
      &        RZ.GE.CST(5) .AND. RZ.LE.CST(6))THEN
@@ -434,12 +434,14 @@ c     .. three-dimensional harmonic oscillator
 c     .. LEPS potential
 c     G.E. Kellerhals, N. Sathyamurthy, and L. M. Raff, J. Chem. Phys, 64 (1976) 818 
 c
+C
 D         write(*,*)cst(1),cst(2),cst(3)
 D         write(*,*)cst(4),cst(5),cst(6)
 D         write(*,*)cst(7),cst(8),cst(9)
 D         write(*,*)cst(10),cst(11),cst(12)
 D         read(*,*)
-d         write(*,*)'rx,ry,rz',rx,ry,rz
+D         write(*,*)'rx,ry,rz',rx,ry,rz
+C
          A = CST(10)
          B = CST(11)
          C = CST(12)

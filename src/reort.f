@@ -58,11 +58,19 @@ c     ** Intrinsic functions
 cdel      INTRINSIC     
 c     .. Start program      
 c     .. init and test parameters 
+c     modified by Vinicius 15/10/2010 debug
+
+c      OPEN(33,file="debug.dat")
+
       DO J=1,M,1 
          RV(J) = ZERO
          DO I=1,N,1
             RV(J) = RV(J) + WORK(I)*EIGVC(I,J)
-         ENDDO
+         ENDDO 
+c     modified by Vinicius 15/10/2010 debug
+c         WRITE(33,*) RV(J)   
+c         CLOSE(33)
+c        ---
       ENDDO
 c
       DO J=1,M,1

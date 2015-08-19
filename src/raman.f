@@ -297,6 +297,9 @@ c     .. Build the functions to be Fourier transformed
 c     ..
 c     .. Perform the Fast Fourier Transform in the x coordinate, which correspond to J 
          CALL FFTNT(U, V, 2*NIAUX, MAUX+1, 1)
+
+
+
 c     ..
 c     .. Spline the the Fourier Transform in the x coordinate
          CALL DBSNAK(NIAUX, WV, KX, XKNOT)
